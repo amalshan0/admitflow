@@ -95,7 +95,10 @@ async def evaluate() -> dict[str, Any]:
 
 def main() -> None:
     report = asyncio.run(evaluate())
-    target = Path(__file__).resolve().parents[3] / "docs/event/CONVERSATION_EVALUATION_RESULTS.json"
+    target = (
+        Path(__file__).resolve().parents[3]
+        / "docs/verification/CONVERSATION_EVALUATION_RESULTS.json"
+    )
     target.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     if report["passed"] != report["total"]:
         raise SystemExit(1)

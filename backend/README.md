@@ -448,7 +448,7 @@ quotation and abstention still apply. The compatibility hybrid helper is not thi
 Run `uv run python -m src.scripts.evaluate_reranking` for four bounded multilingual
 synthetic ranking cases, and `uv run python -m src.scripts.evaluate_faq` for the
 24-case source/abstention check. These make paid OpenAI calls but no Telegram sends or
-database writes. Reports are saved under `docs/event/`; they do not establish broad
+database writes. Reports are saved under `docs/verification/`; they do not establish broad
 fluency or production latency. CI uses mocked models and disposable test databases.
 
 # Isolated full-stack Compose
@@ -487,7 +487,7 @@ or clarification; the code never chooses a fee row by arbitrary ID order.
 No course selection changes as a side effect of asking.
 
 `uv run python -m src.scripts.evaluate_contextual_retrieval` makes eight bounded live
-OpenAI calls without writes or sends and records a synthetic report under docs/event.
+OpenAI calls without writes or sends and records a synthetic report under docs/verification.
 This does not establish general fluency or calibrated confidence. No schema migration
 is needed: scope lives in existing document metadata. Older code ignores scope, so
 keep automated replies paused if rolling back until a scope-aware runtime is restored.
@@ -525,6 +525,18 @@ invoices continue to require signed webhook confirmation. No public deployment i
 required for this local test flow.
 
 Disable `DEMO_ADMISSIONS_ENABLED` to stop new demo operations. Retain the schema and
-markers for historical records. See ADR-017 and `docs/event/DEMO_APPLICATIONS_VALIDATION.json`
+markers for historical records. See ADR-017 and `docs/verification/DEMO_APPLICATIONS_VALIDATION.json`
 for verification scope and rollback limits. Actual test-card completion is not yet
 claimed; the provider link-creation smoke check was cancelled without payment.
+
+
+## Product authority and development profiles
+
+Read [PRODUCT.md](../PRODUCT.md), [SPEC.md](../SPEC.md) and [STATUS.md](../STATUS.md)
+for the maintained product and current acceptance. The native seed, isolated Compose
+profile and public-reference dataset are development profiles, not automatic institution
+onboarding. [DEVELOPMENT_MODES.md](../docs/engineering/DEVELOPMENT_MODES.md) separates
+authorised admissions from reference exploration and legacy sample applications.
+Do not reset data, run the catalogue replacement utility or enable sample/live payments
+as part of routine setup. Current work is tracked in tasks/todo.md; earlier technical
+results live in docs/verification and retain their original source/configuration limits.

@@ -34,15 +34,14 @@ Config comes from a cached `Settings` singleton (`src/core/settings.py`,
 
 - **No hard-coded secrets, URLs, or tunables.** Add a field to `Settings` and read it.
 - **LLM model IDs live in settings, keyed by role** (`llm_fast_model`, `llm_fallback_model`,
-  `llm_nuance_model`) — never inline in code or prose. Model versions churn monthly; the
-  provider layer is pluggable, so only the config changes. See
+  `llm_nuance_model`) — never inline in code or prose. Model versions churn monthly; current provider is OpenAI-only; role configuration does not authorise other providers. See
   [../decisions/ADR-007-finalized-stack.md](../decisions/ADR-007-finalized-stack.md).
 - `.env.example` documents every setting; real values go in `.env` (git-ignored).
 
 ## Async & I/O
 
 FastAPI handlers and anything doing I/O are `async`. Never block the event loop with sync
-network/DB calls or `time.sleep`. Webhooks return `200 OK` immediately and hand real work to
+network/DB calls or `time.sleep`. Webhooks acknowledge only after authenticated durable intake and hand slow work to
 the TaskIQ worker — the request path stays thin.
 
 ## LLM calls

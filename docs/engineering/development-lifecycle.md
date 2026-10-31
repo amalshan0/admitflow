@@ -15,8 +15,7 @@ understand → spec/ADR → plan/task → branch → build (TDD) → verify → 
 
 Every change — feature, bugfix, or chore — walks this loop. Small changes walk it fast;
 they never skip a stage. The stages below map 1:1 to the repo's workflow triggers
-(`/spec`, `/plan`, `/build`, `/test`, `/review`, `/ship` in [.agents/workflows/](../../.agents/workflows/)),
-which are thin pointers — **the substance lives here.**
+(`/spec`, `/plan`, `/build`, `/test`, `/review`, `/ship`); their substantive requirements live here.
 
 > This is the same Think → Plan → Build → Review → Test → Ship → Reflect sprint that
 > disciplined agent teams converge on (e.g. [gstack](https://github.com/garrytan/gstack)),
@@ -52,8 +51,7 @@ acceptance criteria and dependencies. If your change isn't a listed task, add it
 
 ### 3. Branch
 Cut a feature branch off up-to-date `main`. Naming and conventions:
-[git-and-github.md](git-and-github.md). **Exit:** you are on a `feat/…`, `fix/…`, or
-`chore/…` branch, not `main`.
+[git-and-github.md](git-and-github.md). **Exit:** you are on a feature branch (the default prefix is `codex/`), not `main`.
 
 ### 4. Build with TDD  (`/build`, `/test`)
 RED → GREEN → REFACTOR. Write the failing test that describes the behavior, make it pass

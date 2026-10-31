@@ -387,7 +387,9 @@ def main() -> None:
     report = asyncio.run(evaluate())
     dialogues = asyncio.run(evaluate_dialogues())
     report["dialogues"] = dialogues
-    target = Path(__file__).resolve().parents[3] / "docs/event/GUIDANCE_EVALUATION_RESULTS.json"
+    target = (
+        Path(__file__).resolve().parents[3] / "docs/verification/GUIDANCE_EVALUATION_RESULTS.json"
+    )
     target.write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(json.dumps({"passed": report["passed"], "total": report["total"]}))
     if report["passed"] != report["total"] or dialogues["passed"] != dialogues["total"]:

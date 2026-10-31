@@ -1,7 +1,7 @@
 [project]
 name = "admitflow-backend"
 version = "0.1.0"
-description = "AdmitFlow — AI-native WhatsApp admissions engagement backend (FastAPI + hand-rolled engine)"
+description = "AdmitFlow — AI-native institutional admissions engagement backend (FastAPI + hand-rolled engine)"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [

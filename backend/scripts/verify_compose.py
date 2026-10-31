@@ -153,7 +153,7 @@ if __name__ == "__main__":
         print(json.dumps(report, indent=2))
         if not all(checks.values()):
             raise SystemExit(1)
-        (ROOT / "docs/event/COMPOSE_RESULTS.json").write_text(
+        (ROOT / "docs/verification/COMPOSE_RESULTS.json").write_text(
             json.dumps(report, indent=2) + "\n", encoding="utf-8"
         )
     except Exception as error:

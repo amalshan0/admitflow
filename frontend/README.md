@@ -1,10 +1,10 @@
-# AdmitFlow institution knowledge workspace
+# AdmitFlow institutional workspace
 
-This is the initial staff surface for the existing roadmap. It supports institution
-login, file/folder selection, ingestion status, retry/delete and source-passage search.
-It also includes inquiry filters, selected course/batch and eligibility evidence,
-ordered conversation history and the human-request queue. Staff can acknowledge,
-resolve and explicitly resume automation. The same live Telegram inquiry is visible here.
+The Next.js frontend covers admissions inquiries, evidence/conversation history,
+applications/review, payments, staff requests/takeover, reviewed co-pilot, knowledge,
+course/intake/rule/discount management, institution settings, accounts/privacy,
+analytics/exports, delivery budgets, integrations and notifications. Python APIs own
+business rules, authorisation and tenant scope. See [STATUS.md](../STATUS.md) for limits.
 
 Use the [backend setup](../backend/README.md#institution-knowledge-workspace) first:
 migrate PostgreSQL, configure Redis/encryption/OpenAI, provision an administrator,
@@ -29,7 +29,7 @@ Visible pages refresh every four seconds. Search returns original passages and s
 it does not generate an answer. Follow the backend README for supported formats,
 scanned-PDF handling, processing recovery and sensitive-data restrictions.
 
-The interface uses warm neutral surfaces, green actions, table-based document status,
+The interface uses warm neutral surfaces, terracotta actions, table-based document status,
 inline deletion confirmation and responsive layouts. Typography is bundled DM Sans;
 plain CSS keeps this initial surface small. The product requirements remain in
 [SPEC.md](../SPEC.md), and progress stays in the existing plan/todo files.
@@ -53,9 +53,6 @@ npm run test:e2e:live
 The complete synthetic student-to-staff journey and tenant boundaries are tested in
 `backend/tests/integration/test_telegram_journey.py`. Selected live correction,
 source/abstention and human-request checks are verified in the existing task list.
-`npm run record:demo -- --journey` records the actual staff view of that saved journey;
-it sends no Telegram messages and protects existing recording files from overwrite.
-
 The standalone nonroot container and internal build-time rewrite are described in
 [COMPOSE_RUNTIME.md](../docs/engineering/COMPOSE_RUNTIME.md). Runtime secrets belong
 to the backend; rebuilding the frontend is required when its rewrite target changes.

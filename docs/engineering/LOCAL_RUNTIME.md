@@ -1,6 +1,6 @@
 # Local Telegram/OpenAI runtime
 
-Use this repository and the existing plan. The event runtime is local. No cloud
+Use this repository and the existing plan. The development runtime is local. No cloud
 account or additional AI provider is required. This runbook preserves existing volumes
 and does not reset an institution or bot checkpoint.
 
@@ -24,7 +24,7 @@ REDIS_URL=redis://127.0.0.1:6379/0
 URL-encode reserved characters in the database password. From the repository root:
 
 ```bash
-docker compose -f docs/event/readiness-services.yaml up -d --wait
+docker compose -f docs/engineering/readiness-services.yaml up -d --wait
 ```
 
 The profile uses PostgreSQL with pgvector and Redis on loopback-only ports. If those
@@ -96,7 +96,7 @@ non-ASCII questions, against the uploaded synthetic campus reference. Do not run
 checks in ordinary CI. Synthetic tests use fake providers and disposable containers.
 `evaluate_faq` runs 24 sequential cases across English, Hindi, Hinglish and Malayalam
 through the actual FAQ answering function. It checks expected source quotations and
-explicit abstention, writes docs/event/EVALUATION_RESULTS.json and exits nonzero for
+explicit abstention, writes docs/verification/EVALUATION_RESULTS.json and exits nonzero for
 any failed case. It uses only the fictional demo tenant, reads the database without
 committing changes and sends no Telegram messages. It can make up to 24 embedding,
 12 query-translation 24 quotation-selection and up to 24 bounded reranking calls, with the configured provider
@@ -130,12 +130,14 @@ docker build -t admitflow-local:validation backend
 
 Production is a separate milestone: use HTTPS, `APP_ENV=prod`, `DEBUG=false`, explicit
 allowed origins, secret management, database persistence/backups, restore/retention
-checks and approved institution material. No cloud deployment, judge-accessible URL,
-license selection or Git publication follows from a successful local demo.
+checks and approved institution material. A successful local development check does
+not establish production deployment or institutional acceptance.
 
-The repository's `docs/event/BUILD_MANIFEST.json` fingerprints tested code and
-configuration while excluding credentials and runtime data. Regenerate it with
-`uv run python -m src.scripts.record_build` after final source changes.
+The repository's `docs/verification/BUILD_MANIFEST.json` fingerprints tested code and
+configuration while excluding credentials and runtime data. It is historical evidence,
+not a live fingerprint. Before `uv run python -m src.scripts.record_build`, preserve
+the existing manifest in a dated record or committed Git history: the command writes
+a new fingerprint to the same path. A new fingerprint does not itself rerun verification.
 
 ## Delivery budget operation
 
@@ -161,3 +163,11 @@ and scheduler after changing it. Do not enable or backdate a real student's inqu
 a validation shortcut. Automated tests use disposable synthetic records.
 
 The isolated all-container alternative is documented in [COMPOSE_RUNTIME.md](COMPOSE_RUNTIME.md). It preserves this native runtime and its data.
+
+
+## Choose the intended data profile
+
+These commands describe a fresh synthetic development profile. Existing public-reference
+workspaces and authorised institutional data must be preserved. Review
+[DEVELOPMENT_MODES.md](DEVELOPMENT_MODES.md) before running seeds or one-off catalogue
+utilities. Never run replacement/reset commands as an implicit setup step.

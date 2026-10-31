@@ -1,0 +1,74 @@
+{
+  "task": 71,
+  "recorded_at": "2026-10-30T17:59:12.561837+00:00",
+  "base_commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+  "scope": "Product context, obsolete material removal, technical evidence/tool relocation; no admissions runtime behavior or database changes",
+  "source_coverage": {
+    "relative_markdown_links_checked": 227,
+    "link_and_context_errors": [],
+    "source_documents": {
+      "v1": 43,
+      "v2": 20,
+      "admitflow": 64
+    },
+    "historical_json_records_byte_identical": 18,
+    "diagnostic_collection_byte_identical": true,
+    "preexisting_frontend_edit_preserved": true
+  },
+  "checks": {
+    "backend": {
+      "command": "Git for Windows bash backend/scripts/verify.sh",
+      "lint": "passed",
+      "format_files": 239,
+      "mypy_source_files": 131,
+      "pytest_passed": 323,
+      "pytest_deselected": 131,
+      "warnings": 2,
+      "warning_scope": "Existing AsyncMock coroutine warnings in unit/core/test_rag.py"
+    },
+    "frontend_lint": "passed",
+    "frontend_production_build": "passed",
+    "removed_active_document_dependencies": "none found",
+    "adversarial_review": {
+      "method": "Self-review against source snapshots, current implementation, guard boundaries, diff and documentation references",
+      "critical_findings_open": 0,
+      "important_findings_open": 0,
+      "resolved_findings": [
+        "Preserved original verification results and marked their dated scope",
+        "Kept unimplemented v2 privacy/speaker/metadata decisions explicit",
+        "Preserved financial/test-mode guards and unrelated frontend edit",
+        "Removed stale source-vendor claims from the refreshed graph",
+        "Corrected moved technical report and reusable tooling paths"
+      ]
+    }
+  },
+  "knowledge_graph": "Refreshed source structure, current document headings and explicit links; pre-existing inferred code edges remain navigation hints, not implementation proof",
+  "publication": {
+    "pull_request": "https://github.com/Shan091/admitflow/pull/25",
+    "workflow": "Branch/PR publication; inspect successful checks on the final head before squash merge. GitHub records check and merge state.",
+    "deployment": false
+  },
+  "synchronization_verification": {
+    "date": "2026-11-01",
+    "remote_main_at_review": "77dce94ffa9de33d6049eabf82bd04127f6a517f",
+    "remote_main_content_change_from_previous_base": false,
+    "backend_gate": "passed",
+    "pytest_passed": 323,
+    "pytest_deselected": 131,
+    "existing_warnings": 2,
+    "mypy_source_files": 131,
+    "frontend_lint": "passed",
+    "frontend_production_build": "passed",
+    "relative_markdown_file_links_checked": 220,
+    "broken_file_links": 0,
+    "historical_json_records_byte_identical": 18,
+    "adversarial_review": "Self-review of the full diff, historical records, output paths, runtime and development safeguards; no open critical or important findings",
+    "preexisting_frontend_edit_preserved": true,
+    "publication": "PR #25 records checks on the final head and squash-merge status"
+  },
+  "limits": [
+    "Default backend gate excludes explicitly marked integration/live suites",
+    "No live provider, handset, real payment, database or production deployment revalidation",
+    "Removed materials remain recoverable from earlier Git commits"
+  ]
+}

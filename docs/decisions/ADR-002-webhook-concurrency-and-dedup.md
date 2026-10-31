@@ -1,33 +1,26 @@
-# ADR-002: Webhook Concurrency and Deduplication
+# ADR-002: Durable intake, concurrency and duplicate handling
 
-## Status
-Accepted
-
-
-## Context
-Meta's WhatsApp Business API has two known behaviors that cause issues in stateful bots:
-1. It frequently sends duplicate webhooks for the same message if the initial response is delayed.
-2. Users can send multiple messages in rapid succession (e.g., "Hi", "I want to apply", "My name is John" within 2 seconds). 
-If two background workers process these messages simultaneously, they will read the same conversation state and one will overwrite the other, corrupting the conversation history.
+Status: Accepted principle; Telegram runtime supersedes the original WhatsApp-only
+implementation assumptions under ADR-012.
 
 ## Decision
-Implement a two-layer Redis strategy:
-1. **Deduplication**: Use Redis `SETNX` on the webhook `message.id` with a 5-minute TTL.
-2. **Concurrency**: Use a Redis distributed lock (mutex) keyed by `wa_mutex:{phone_number}` around the `handle_turn()` execution.
 
-## Alternatives Considered
+Accept external work durably before acknowledging it, deduplicate scoped provider
+identities, and serialize each tenant-owned conversation. Keep slow AI/provider work
+out of external request handlers. Redis/TaskIQ delivers jobs; database state supports
+recovery when job publication fails.
 
-### PostgreSQL Database Locks (`SELECT FOR UPDATE`)
-- Pros: No need for an external Redis dependency.
-- Cons: Holding database connections open while waiting for external LLM calls to complete will quickly exhaust the connection pool.
-- Rejected: Too risky for scalability.
+Telegram polling persists accepted events with checkpoints and holds a receiver lock.
+Workers serialize on the tenant-owned lead and commit state/replies atomically. The
+outbox preserves send order and records uncertain delivery rather than blindly resending.
+Callbacks bind actor/chat/tenant and current selection. Webhooks need authenticated
+HTTPS and equivalent durable acceptance.
 
-### In-Memory Locks (Asyncio Locks)
-- Pros: Simplest implementation.
-- Cons: Only works if there is exactly one backend worker process. Fails in horizontal scaling or multi-worker deployments (which we need).
-- Rejected: Not horizontally scalable.
+## Historical alternatives and consequences
 
-## Consequences
-- Requires Redis as a hard dependency in the infrastructure stack (which we already need for TaskIQ).
-- Duplicate messages from Meta will be silently dropped at the edge (FastAPI layer) before hitting the workers.
-- Sequential messages from the same user will correctly queue and process in order, preserving state integrity.
+The original Meta route used Redis SETNX message dedup and a per-phone mutex. Those
+helpers remain compatibility code; they do not replace active bot/update/chat scoping,
+durable inbox recovery or database ownership checks. Synchronous model work in a webhook
+was rejected because provider deadlines and retries can otherwise duplicate/loss work.
+No external exactly-once delivery claim is made. Test replays, concurrent updates,
+publication failures, lock ownership, crash recovery and uncertain sends.

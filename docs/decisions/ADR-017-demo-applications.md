@@ -47,7 +47,7 @@ The scheduler checks up to ten due demo invoices per sweep within a seven-day wi
 with a per-invoice cooldown; staff can also check an older demo invoice explicitly.
 Production and ordinary invoice confirmation retain the signed-webhook boundary.
 
-See [demo verification](../event/DEMO_APPLICATIONS_VALIDATION.json) for automated,
+See [demo verification](../verification/DEMO_APPLICATIONS_VALIDATION.json) for automated,
 local catalogue, provider and browser evidence. An actual test-card payment and
 handset receipt of the new flow remain unverified. A private provider test link was
 created, checked and cancelled without sending a Telegram message or charging money.

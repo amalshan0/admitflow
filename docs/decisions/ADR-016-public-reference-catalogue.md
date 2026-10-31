@@ -57,7 +57,7 @@ Quality gates, real PostgreSQL reset/rollback/reference/application/payment case
 desktop/mobile UI checks verify boundaries. Synthetic OpenAI calls check graduate and
 undergraduate guidance and the indexed campus answer; temporary leads are rolled back,
 with no Telegram test send. Evidence: `JAIN_KOCHI_VALIDATION.json` and
-`JAIN_KOCHI_RELEASE.json` under `docs/event/`.
+`JAIN_KOCHI_RELEASE.json` under `docs/verification/`.
 
 Summaries are not official admissions decisions. Public pages may be outdated or
 inconsistent. Regulatory, ranking, earnings and outcome claims were not independently

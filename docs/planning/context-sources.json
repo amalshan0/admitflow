@@ -1,0 +1,1536 @@
+{
+  "recorded_on": "2026-10-30",
+  "purpose": "Local product-context coverage; source snapshots are provenance, not active dependencies",
+  "sources": [
+    {
+      "repository": "v1",
+      "commit": "9726ffa7bf6603013c6416fc5dc2143aa7e0929c",
+      "original_path": ".agents/rules/dev-workflow.md",
+      "sha256": "d90ab4a1a8f38b54a4dff93417d000569e53fa1c0df751296ce7c795130c3de8",
+      "disposition": "useful requirements/lessons distilled; temporary instructions/assets and duplicate generated context omitted",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "v1",
+      "commit": "9726ffa7bf6603013c6416fc5dc2143aa7e0929c",
+      "original_path": ".agents/rules/graphify.md",
+      "sha256": "fdc36079e3f0773cbd09fbc40068c0b4f0ee3f3d7270a6160dee85005bfa7937",
+      "disposition": "useful requirements/lessons distilled; temporary instructions/assets and duplicate generated context omitted",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "v1",
+      "commit": "9726ffa7bf6603013c6416fc5dc2143aa7e0929c",
+      "original_path": ".agents/rules/ponytail.md",
+      "sha256": "6ae86de93c755fb230db7fa354b54ae31f1fa136467aaa7048dabebc378e0060",
+      "disposition": "useful requirements/lessons distilled; temporary instructions/assets and duplicate generated context omitted",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "v1",
+      "commit": "9726ffa7bf6603013c6416fc5dc2143aa7e0929c",
+      "original_path": ".agents/workflows/build.md",
+      "sha256": "3688eff1557ef04ace46684ddd8c1dd880aa306fe768bb5ce4026d345ce0b3b5",
+      "disposition": "useful requirements/lessons distilled; temporary instructions/assets and duplicate generated context omitted",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "v1",
+      "commit": "9726ffa7bf6603013c6416fc5dc2143aa7e0929c",
+      "original_path": ".agents/workflows/code-simplify.md",
+      "sha256": "1bbfef6a2eb40bfe02fc05560cf259853de4a3882df2a7f252feabd4c9c5efc3",
+      "disposition": "useful requirements/lessons distilled; temporary instructions/assets and duplicate generated context omitted",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "v1",
+      "commit": "9726ffa7bf6603013c6416fc5dc2143aa7e0929c",
+      "original_path": ".agents/workflows/constraints.md",
+      "sha256": "b8a236c554bc608017b9a34e51f28259269ac7f516656778e5e50017f738a78d",
+      "disposition": "useful requirements/lessons distilled; temporary instructions/assets and duplicate generated context omitted",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "v1",
+      "commit": "9726ffa7bf6603013c6416fc5dc2143aa7e0929c",
+      "original_path": ".agents/workflows/graphify.md",
+      "sha256": "052a28c68432c0a1ae2a0edd4532808430e33fb9e6666a2f8e8339d8ab29529d",
+      "disposition": "useful requirements/lessons distilled; temporary instructions/assets and duplicate generated context omitted",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "v1",
+      "commit": "9726ffa7bf6603013c6416fc5dc2143aa7e0929c",
+      "original_path": ".agents/workflows/plan.md",
+      "sha256": "2c5558ddfdc107563f7e282fafb78996dfc49bc258e05d0c92b87bd15685fa45",
+      "disposition": "useful requirements/lessons distilled; temporary instructions/assets and duplicate generated context omitted",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "v1",
+      "commit": "9726ffa7bf6603013c6416fc5dc2143aa7e0929c",
+      "original_path": ".agents/workflows/review.md",
+      "sha256": "6e71b2609be4bf737b20018d753775ff2362c0c11f2fc1aa78747e9195109ad4",
+      "disposition": "useful requirements/lessons distilled; temporary instructions/assets and duplicate generated context omitted",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "v1",
+      "commit": "9726ffa7bf6603013c6416fc5dc2143aa7e0929c",
+      "original_path": ".agents/workflows/ship.md",
+      "sha256": "885ca234f7d671724c609b7011152744bcfcba4c50491cbc3b065cec356e8dca",
+      "disposition": "useful requirements/lessons distilled; temporary instructions/assets and duplicate generated context omitted",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "v1",
+      "commit": "9726ffa7bf6603013c6416fc5dc2143aa7e0929c",
+      "original_path": ".agents/workflows/spec.md",
+      "sha256": "1319404cdf89837747c83eb7644d83075eb48afc224c058ffa17ef8b0df5d1a5",
+      "disposition": "useful requirements/lessons distilled; temporary instructions/assets and duplicate generated context omitted",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "v1",
+      "commit": "9726ffa7bf6603013c6416fc5dc2143aa7e0929c",
+      "original_path": ".agents/workflows/test.md",
+      "sha256": "b4f061ec7ae71c1a91e8fc63cf0741c3243a1646d390d51cb6a64ee54831e84f",
+      "disposition": "useful requirements/lessons distilled; temporary instructions/assets and duplicate generated context omitted",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "v1",
+      "commit": "9726ffa7bf6603013c6416fc5dc2143aa7e0929c",
+      "original_path": ".agents/workflows/webperf.md",
+      "sha256": "0c42f69fcd09ff8ab5324ca4ea85b161fcd74cfcbf1cc1ee064806ff2b9f236d",
+      "disposition": "useful requirements/lessons distilled; temporary instructions/assets and duplicate generated context omitted",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "v1",
+      "commit": "9726ffa7bf6603013c6416fc5dc2143aa7e0929c",
+      "original_path": ".claude/skills/dev-workflow/SKILL.md",
+      "sha256": "04c80cee361a7ae05fe9a9cfac40b68b98e6d4a45e4d355145b469e661226202",
+      "disposition": "useful requirements/lessons distilled; temporary instructions/assets and duplicate generated context omitted",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "v1",
+      "commit": "9726ffa7bf6603013c6416fc5dc2143aa7e0929c",
+      "original_path": "AGENTS.md",
+      "sha256": "bf78cbfe334d778d8f9c313e4d487122cd44b77b51725414ed4501df23fe5878",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "v1",
+      "commit": "9726ffa7bf6603013c6416fc5dc2143aa7e0929c",
+      "original_path": "backend/README.md",
+      "sha256": "cad73a9c257c4d3bba4b430c34aa8e940b80136136ab66cdc70192284c6b65b3",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "v1",
+      "commit": "9726ffa7bf6603013c6416fc5dc2143aa7e0929c",
+      "original_path": "CONSTRAINTS.md",
+      "sha256": "2fd02e6c4ab079db37a299afa5218ebb88fb66b58834d906e3bbf1bd49f9dc0b",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "CONSTRAINTS.md"
+      ]
+    },
+    {
+      "repository": "v1",
+      "commit": "9726ffa7bf6603013c6416fc5dc2143aa7e0929c",
+      "original_path": "DEMO_SPEC.md",
+      "sha256": "7a057801466081b5a08c90d0d56e49035d246266c056bfd7253b5c1d4ae6d52e",
+      "disposition": "useful requirements/lessons distilled; temporary instructions/assets and duplicate generated context omitted",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "v1",
+      "commit": "9726ffa7bf6603013c6416fc5dc2143aa7e0929c",
+      "original_path": "docs/decisions/ADR-001-hybrid-architecture.md",
+      "sha256": "ce7aa6e17020cb009e4c6b6b5129bfbc0da563d285374aee3660dd88cc9d416b",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "docs/decisions/ADR-001-hybrid-architecture.md",
+        "docs/decisions/ADR-018-product-context-consolidation.md"
+      ]
+    },
+    {
+      "repository": "v1",
+      "commit": "9726ffa7bf6603013c6416fc5dc2143aa7e0929c",
+      "original_path": "docs/decisions/ADR-002-webhook-concurrency-and-dedup.md",
+      "sha256": "79cbf7a47272992c9f32cc89e476aec89f8be456efb2eed0804922b5c989eb58",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "docs/decisions/ADR-002-webhook-concurrency-and-dedup.md",
+        "docs/decisions/ADR-018-product-context-consolidation.md"
+      ]
+    },
+    {
+      "repository": "v1",
+      "commit": "9726ffa7bf6603013c6416fc5dc2143aa7e0929c",
+      "original_path": "docs/decisions/ADR-003-multi-tenancy-strategy.md",
+      "sha256": "4f37919e7adc91395dd29c77d6f82c876506877e97b02732f7d74dd802ee8887",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "docs/decisions/ADR-003-multi-tenancy-strategy.md",
+        "docs/decisions/ADR-018-product-context-consolidation.md"
+      ]
+    },
+    {
+      "repository": "v1",
+      "commit": "9726ffa7bf6603013c6416fc5dc2143aa7e0929c",
+      "original_path": "docs/decisions/ADR-004-memory-architecture.md",
+      "sha256": "eeaea3b822c88554d8c693c8e2e8c06d6c2cf16f066904fa04aae5065126153a",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "docs/decisions/ADR-004-memory-architecture.md",
+        "docs/decisions/ADR-018-product-context-consolidation.md"
+      ]
+    },
+    {
+      "repository": "v1",
+      "commit": "9726ffa7bf6603013c6416fc5dc2143aa7e0929c",
+      "original_path": "docs/decisions/ADR-005-three-layer-guardrails.md",
+      "sha256": "eb9a4a1b4d60962e6cdb02e50a0fd06825780838cfcc0a80d9fee7e2907715b2",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "docs/decisions/ADR-005-three-layer-guardrails.md",
+        "docs/decisions/ADR-018-product-context-consolidation.md"
+      ]
+    },
+    {
+      "repository": "v1",
+      "commit": "9726ffa7bf6603013c6416fc5dc2143aa7e0929c",
+      "original_path": "docs/decisions/ADR-006-code-owned-qualification-and-payments.md",
+      "sha256": "c9fa0acfac62942c9c079c875fbfb33431719a1e396e2eb7d7f94ae31cac15a1",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "docs/decisions/ADR-006-code-owned-qualification-and-payments.md",
+        "docs/decisions/ADR-018-product-context-consolidation.md"
+      ]
+    },
+    {
+      "repository": "v1",
+      "commit": "9726ffa7bf6603013c6416fc5dc2143aa7e0929c",
+      "original_path": "docs/decisions/ADR-007-finalized-stack.md",
+      "sha256": "496d40ae5b3b0a8ce6acf54849ed0a185fa9c0d6192cc9cf375a9ecd73105d50",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "docs/decisions/ADR-007-finalized-stack.md",
+        "docs/decisions/ADR-018-product-context-consolidation.md"
+      ]
+    },
+    {
+      "repository": "v1",
+      "commit": "9726ffa7bf6603013c6416fc5dc2143aa7e0929c",
+      "original_path": "docs/decisions/ADR-008-system-1-decision-layer.md",
+      "sha256": "a7bc7219bc5fa325985bf5797c1c77f2cddcee995dbdd4b596290ce0730ebe72",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "docs/decisions/ADR-008-system-1-decision-layer.md",
+        "docs/decisions/ADR-018-product-context-consolidation.md"
+      ]
+    },
+    {
+      "repository": "v1",
+      "commit": "9726ffa7bf6603013c6416fc5dc2143aa7e0929c",
+      "original_path": "docs/decisions/ADR-009-pii-encryption-and-audit.md",
+      "sha256": "99bedd838f49ae41b77a7e39fee563a554561342a710436846cdc06687da1126",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "docs/decisions/ADR-009-pii-encryption-and-audit.md",
+        "docs/decisions/ADR-018-product-context-consolidation.md"
+      ]
+    },
+    {
+      "repository": "v1",
+      "commit": "9726ffa7bf6603013c6416fc5dc2143aa7e0929c",
+      "original_path": "docs/decisions/ADR-010-triage-fallback-routing.md",
+      "sha256": "cabfffe5a00ba864ae447b656e89b78d9c50b12613d5b9d24c7acd4657bbe714",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "docs/decisions/ADR-010-triage-fallback-routing.md",
+        "docs/decisions/ADR-018-product-context-consolidation.md"
+      ]
+    },
+    {
+      "repository": "v1",
+      "commit": "9726ffa7bf6603013c6416fc5dc2143aa7e0929c",
+      "original_path": "docs/decisions/ADR-011-advanced-rag-strategy.md",
+      "sha256": "95efd8040f24c6c2dbe8f5fcb2b6dd959324160d81fce296c7fea9ad6ecf2fa6",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "docs/decisions/ADR-011-advanced-rag-strategy.md",
+        "docs/decisions/ADR-018-product-context-consolidation.md"
+      ]
+    },
+    {
+      "repository": "v1",
+      "commit": "9726ffa7bf6603013c6416fc5dc2143aa7e0929c",
+      "original_path": "docs/engineering/code-standards.md",
+      "sha256": "9f5ac4ba43b3751383ef24ec75cba84031a6707e61867e7334d4378f778f3e3c",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "docs/engineering/code-standards.md"
+      ]
+    },
+    {
+      "repository": "v1",
+      "commit": "9726ffa7bf6603013c6416fc5dc2143aa7e0929c",
+      "original_path": "docs/engineering/development-lifecycle.md",
+      "sha256": "1cdb342c10432fbd6871ec55c16402622177cdf48ae6aee0ae613cd530ab192f",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "docs/engineering/development-lifecycle.md"
+      ]
+    },
+    {
+      "repository": "v1",
+      "commit": "9726ffa7bf6603013c6416fc5dc2143aa7e0929c",
+      "original_path": "docs/engineering/git-and-github.md",
+      "sha256": "3c76451018c620ea0f1f97f2a3ab2503f739d35a59ac21e2cc40d406047bfef2",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "docs/engineering/git-and-github.md"
+      ]
+    },
+    {
+      "repository": "v1",
+      "commit": "9726ffa7bf6603013c6416fc5dc2143aa7e0929c",
+      "original_path": "docs/engineering/quality-gates.md",
+      "sha256": "d12bdddd5dedf794402415032e4592df461e6306fe50a386a595ea0f901a1062",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "docs/engineering/quality-gates.md"
+      ]
+    },
+    {
+      "repository": "v1",
+      "commit": "9726ffa7bf6603013c6416fc5dc2143aa7e0929c",
+      "original_path": "docs/engineering/security-and-production.md",
+      "sha256": "ee5ecbc57e9245742fd1ab7c7674c9a5ccde5aa8fc29cbb9033b9f4c2b956f66",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "docs/engineering/security-and-production.md"
+      ]
+    },
+    {
+      "repository": "v1",
+      "commit": "9726ffa7bf6603013c6416fc5dc2143aa7e0929c",
+      "original_path": "docs/engineering/testing.md",
+      "sha256": "bbba0f9e0cb344ed0795279631276d72b869ab216fd9f219c6be0d576ce8e85f",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "docs/engineering/testing.md"
+      ]
+    },
+    {
+      "repository": "v1",
+      "commit": "9726ffa7bf6603013c6416fc5dc2143aa7e0929c",
+      "original_path": "docs/intent/admissions-flow-and-discounts.md",
+      "sha256": "0926b33f68ceb84774d64c15766db025e99059aa41a2aedfbc228926130303a6",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "docs/intent/admissions-flow-and-discounts.md",
+        "SPEC.md"
+      ]
+    },
+    {
+      "repository": "v1",
+      "commit": "9726ffa7bf6603013c6416fc5dc2143aa7e0929c",
+      "original_path": "docs/research/system-1-decision-models-laya-jev.md",
+      "sha256": "66ae41b0e2ab1afa630c13ba39ec231d12f6809e80b9b358688590ca6f72bee8",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "docs/research/system-1-decision-models-laya-jev.md",
+        "docs/decisions/ADR-008-system-1-decision-layer.md"
+      ]
+    },
+    {
+      "repository": "v1",
+      "commit": "9726ffa7bf6603013c6416fc5dc2143aa7e0929c",
+      "original_path": "GEMINI.md",
+      "sha256": "ec6cb5b3aa6ca759b591c1f5ad39e56170e1bde9884a966cbfa3b98efc10507d",
+      "disposition": "useful requirements/lessons distilled; temporary instructions/assets and duplicate generated context omitted",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "v1",
+      "commit": "9726ffa7bf6603013c6416fc5dc2143aa7e0929c",
+      "original_path": "graphify-out/GRAPH_REPORT.md",
+      "sha256": "180a9e87854c604aa00668d01a2ff4f938654862b8b3d967c4c95819bd324579",
+      "disposition": "useful requirements/lessons distilled; temporary instructions/assets and duplicate generated context omitted",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "v1",
+      "commit": "9726ffa7bf6603013c6416fc5dc2143aa7e0929c",
+      "original_path": "PRODUCT.md",
+      "sha256": "ca483822515677a5742e0bda18e4771b208689ca6ab54cf18df290c3194c95f3",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "PRODUCT.md"
+      ]
+    },
+    {
+      "repository": "v1",
+      "commit": "9726ffa7bf6603013c6416fc5dc2143aa7e0929c",
+      "original_path": "SPEC.md",
+      "sha256": "170774a61dc39caa5cef6696e82715ae9b5192db54c13003ab1ae5f8449907c5",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "v1",
+      "commit": "9726ffa7bf6603013c6416fc5dc2143aa7e0929c",
+      "original_path": "tasks/plan.md",
+      "sha256": "b82931fccfa6af6afcb00c47c9ffdf627c161771d061a3bde227657f334d4e60",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "tasks/plan.md",
+        "tasks/todo.md",
+        "docs/verification/IMPLEMENTATION_HISTORY.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "v1",
+      "commit": "9726ffa7bf6603013c6416fc5dc2143aa7e0929c",
+      "original_path": "tasks/todo.md",
+      "sha256": "fcec36e31a6760690c02e0b062bc08ab9e2dcb5e65abd5f2c75f52149bca60e4",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "tasks/plan.md",
+        "tasks/todo.md",
+        "docs/verification/IMPLEMENTATION_HISTORY.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "v2",
+      "commit": "8fda9fb2eebcbb78cb9c98f588955187d4d237f3",
+      "original_path": "AGENTS.md",
+      "sha256": "5e3f4ccc95bbeb4c7b7552890bf57587773e7900fdca53ea116af866f2150877",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "v2",
+      "commit": "8fda9fb2eebcbb78cb9c98f588955187d4d237f3",
+      "original_path": "AI_USAGE.md",
+      "sha256": "faafc8384a5849aa7ac9163ea0b593bcbb374de2f9b8e063496342e90d9601ab",
+      "disposition": "useful requirements/lessons distilled; temporary instructions/assets and duplicate generated context omitted",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "v2",
+      "commit": "8fda9fb2eebcbb78cb9c98f588955187d4d237f3",
+      "original_path": "CHANGELOG.md",
+      "sha256": "38180cd03ea8149a098e517266323e88e96588ce48cd6985229497709f6f274a",
+      "disposition": "useful requirements/lessons distilled; temporary instructions/assets and duplicate generated context omitted",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "v2",
+      "commit": "8fda9fb2eebcbb78cb9c98f588955187d4d237f3",
+      "original_path": "docs/BUILD_CYCLE.md",
+      "sha256": "55a8d7aaab106a0866b9e3443a8d9471ba06bf51607cf4fc030c09a04e8ab348",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "v2",
+      "commit": "8fda9fb2eebcbb78cb9c98f588955187d4d237f3",
+      "original_path": "docs/DECISIONS.md",
+      "sha256": "3ea4b4b265877328da528f2cac8a476be70598399351fa54acdc87e031555820",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "v2",
+      "commit": "8fda9fb2eebcbb78cb9c98f588955187d4d237f3",
+      "original_path": "README.md",
+      "sha256": "ec4ae3115a89a110d652b5d156c6a2c99fc1dbaacc9b3e6b58f3b524e1a7bcdf",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "v2",
+      "commit": "8fda9fb2eebcbb78cb9c98f588955187d4d237f3",
+      "original_path": "SPEC.md",
+      "sha256": "b15534e346e40a979b76259a5542d0853b938f52a174de5898ce1ec202e58f4f",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "v2",
+      "commit": "8fda9fb2eebcbb78cb9c98f588955187d4d237f3",
+      "original_path": "SUBMISSION.md",
+      "sha256": "40fb2b703383eddfe9be781462a9b184f7695954351a859b2f24a06a43c21eac",
+      "disposition": "useful requirements/lessons distilled; temporary instructions/assets and duplicate generated context omitted",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "v2",
+      "commit": "8fda9fb2eebcbb78cb9c98f588955187d4d237f3",
+      "original_path": "tasks/features/adaptive-course-discovery.md",
+      "sha256": "fa0ed01931c510e80d7f8e2e2fe384853a467c2afbf0eb1f7001f96c396f8016",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "tasks/plan.md",
+        "tasks/todo.md",
+        "docs/verification/IMPLEMENTATION_HISTORY.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "v2",
+      "commit": "8fda9fb2eebcbb78cb9c98f588955187d4d237f3",
+      "original_path": "tasks/features/conversational-guidance-agent.md",
+      "sha256": "e648c350032e84f04cfae0c61c91615eb3711b6871dc1f73d0f1c2eb9cff59d3",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "tasks/plan.md",
+        "tasks/todo.md",
+        "docs/verification/IMPLEMENTATION_HISTORY.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "v2",
+      "commit": "8fda9fb2eebcbb78cb9c98f588955187d4d237f3",
+      "original_path": "tasks/features/conversational-intake.md",
+      "sha256": "3fab9202e489f418c01744e08cc601288650c2e51ebe000fc00dff1704acb79a",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "tasks/plan.md",
+        "tasks/todo.md",
+        "docs/verification/IMPLEMENTATION_HISTORY.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "v2",
+      "commit": "8fda9fb2eebcbb78cb9c98f588955187d4d237f3",
+      "original_path": "tasks/features/core-bootstrap.md",
+      "sha256": "98ddff84dc361d6c1a91a990a2e3ee69c334a93602b9f560523adef855a6d5d8",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "tasks/plan.md",
+        "tasks/todo.md",
+        "docs/verification/IMPLEMENTATION_HISTORY.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "v2",
+      "commit": "8fda9fb2eebcbb78cb9c98f588955187d4d237f3",
+      "original_path": "tasks/features/demo-data-reset.md",
+      "sha256": "f999f2ecc6ce553308e79998b0d7db51e5424e2982559c6ba6b554aec101bc97",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "tasks/plan.md",
+        "tasks/todo.md",
+        "docs/verification/IMPLEMENTATION_HISTORY.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "v2",
+      "commit": "8fda9fb2eebcbb78cb9c98f588955187d4d237f3",
+      "original_path": "tasks/features/faq-vector-search.md",
+      "sha256": "8008b6fe84210f24c79db32c84dcaf2c7e9c4747b4b4efd4cc0b6459a85330b9",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "tasks/plan.md",
+        "tasks/todo.md",
+        "docs/verification/IMPLEMENTATION_HISTORY.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "v2",
+      "commit": "8fda9fb2eebcbb78cb9c98f588955187d4d237f3",
+      "original_path": "tasks/features/live-faq-retrieval-evaluation.md",
+      "sha256": "2bc894827d47b1a911cee6e0a188b1c77b20afd9e934743eaa4d807b545f57f9",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "tasks/plan.md",
+        "tasks/todo.md",
+        "docs/verification/IMPLEMENTATION_HISTORY.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "v2",
+      "commit": "8fda9fb2eebcbb78cb9c98f588955187d4d237f3",
+      "original_path": "tasks/features/razorpay-test-payments.md",
+      "sha256": "7a0f8ae16232d3420a14956be4c4d8d60b93c31a2098d1fd4333f58f2ef18d2c",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "tasks/plan.md",
+        "tasks/todo.md",
+        "docs/verification/IMPLEMENTATION_HISTORY.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "v2",
+      "commit": "8fda9fb2eebcbb78cb9c98f588955187d4d237f3",
+      "original_path": "tasks/features/staff-login.md",
+      "sha256": "94dd273bb9849f599589ac8a32f3d6c3231b95129b550b65912626126e64a153",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "tasks/plan.md",
+        "tasks/todo.md",
+        "docs/verification/IMPLEMENTATION_HISTORY.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "v2",
+      "commit": "8fda9fb2eebcbb78cb9c98f588955187d4d237f3",
+      "original_path": "tasks/features/telegram-qualification.md",
+      "sha256": "3ae6b777db6f8398ab136e60c2d4316a4c35eb0803aa70e45e7a85071adde054",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "tasks/plan.md",
+        "tasks/todo.md",
+        "docs/verification/IMPLEMENTATION_HISTORY.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "v2",
+      "commit": "8fda9fb2eebcbb78cb9c98f588955187d4d237f3",
+      "original_path": "tasks/features/TEMPLATE.md",
+      "sha256": "1b35001e790311ab68ff367428fc3f47960aeee2ff0698f3b8cd3fd80d2cbced",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "tasks/plan.md",
+        "tasks/todo.md",
+        "docs/verification/IMPLEMENTATION_HISTORY.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "v2",
+      "commit": "8fda9fb2eebcbb78cb9c98f588955187d4d237f3",
+      "original_path": "tasks/todo.md",
+      "sha256": "3180e087bd95391cdd06e6b050adc664effb58d46d4fa1a64ee9ac8f80696b1b",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "tasks/plan.md",
+        "tasks/todo.md",
+        "docs/verification/IMPLEMENTATION_HISTORY.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "AGENTS.md",
+      "sha256": "282384dda31724fe619fc08ee382ab59b146b2de8af9879c90cb37146cc5f203",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "backend/README.md",
+      "sha256": "9e6103c2f0a9d6f6f72180239c3b1b8b50fba9d6ce1e82387000022858dab5bf",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/decisions/ADR-001-hybrid-architecture.md",
+      "sha256": "fbd2ae7861b6dc85c97bbfec9f4016048662091d4cf1490c7ea55c4889e45a5a",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "docs/decisions/ADR-001-hybrid-architecture.md",
+        "docs/decisions/ADR-018-product-context-consolidation.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/decisions/ADR-002-webhook-concurrency-and-dedup.md",
+      "sha256": "2639e315dabbe0f6bc4cee3770261ccc76591aa1762230c83de4454496f3ed65",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "docs/decisions/ADR-002-webhook-concurrency-and-dedup.md",
+        "docs/decisions/ADR-018-product-context-consolidation.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/decisions/ADR-003-multi-tenancy-strategy.md",
+      "sha256": "bb930112d1181551045346a99b9e4600b4e1543dc342cff24e10761279e6ca66",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "docs/decisions/ADR-003-multi-tenancy-strategy.md",
+        "docs/decisions/ADR-018-product-context-consolidation.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/decisions/ADR-004-memory-architecture.md",
+      "sha256": "83e479bc50121d3b85cc694cefe8c5508164b9adafe953624c30e0012a9bfd84",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "docs/decisions/ADR-004-memory-architecture.md",
+        "docs/decisions/ADR-018-product-context-consolidation.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/decisions/ADR-005-three-layer-guardrails.md",
+      "sha256": "845f02634276d7e5c780eb199a00b822099f47f4b9bf5b14b99c26458c0bb84e",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "docs/decisions/ADR-005-three-layer-guardrails.md",
+        "docs/decisions/ADR-018-product-context-consolidation.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/decisions/ADR-006-code-owned-qualification-and-payments.md",
+      "sha256": "9ef273415e9b11e710ff00ae92cd63c7df4a95889476cd87e3dd3061c96d0b50",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "docs/decisions/ADR-006-code-owned-qualification-and-payments.md",
+        "docs/decisions/ADR-018-product-context-consolidation.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/decisions/ADR-007-finalized-stack.md",
+      "sha256": "d9be26f8c8badf7842c7de7b43090ec4f7a120b69250eca6bf725135d8445555",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "docs/decisions/ADR-007-finalized-stack.md",
+        "docs/decisions/ADR-018-product-context-consolidation.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/decisions/ADR-008-system-1-decision-layer.md",
+      "sha256": "92e4e1a206eedcf6e9a88eb5193da431c2b8d3a7b3464ca22e4cf2de2a2b312e",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "docs/decisions/ADR-008-system-1-decision-layer.md",
+        "docs/decisions/ADR-018-product-context-consolidation.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/decisions/ADR-009-pii-encryption-and-audit.md",
+      "sha256": "90668468c99f2afae7fbce118cfc516b62c67f5d71374c5305c966a93adec471",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "docs/decisions/ADR-009-pii-encryption-and-audit.md",
+        "docs/decisions/ADR-018-product-context-consolidation.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/decisions/ADR-010-triage-fallback-routing.md",
+      "sha256": "94a6bef2fc781c17bdae3d1d02e36ad14c6cf2d3109a273c62bd11eac2825abb",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "docs/decisions/ADR-010-triage-fallback-routing.md",
+        "docs/decisions/ADR-018-product-context-consolidation.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/decisions/ADR-011-advanced-rag-strategy.md",
+      "sha256": "6f610899f1f479e2984c7241d783f1f4f29e9558a52cb7d53c8864d6e8512f50",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "docs/decisions/ADR-011-advanced-rag-strategy.md",
+        "docs/decisions/ADR-018-product-context-consolidation.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/decisions/ADR-012-telegram-openai-mvp.md",
+      "sha256": "5234dad34bd2c92638a92e54a9b40585c90171979bc13e1fa8d41dad1e7db627",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "docs/decisions/ADR-012-telegram-openai-mvp.md",
+        "docs/decisions/ADR-018-product-context-consolidation.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/decisions/ADR-013-adaptive-course-guidance.md",
+      "sha256": "573d40c3825736e1258769ad9a65fac373cadcc3b3e87f72987f062f636779c0",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "docs/decisions/ADR-013-adaptive-course-guidance.md",
+        "docs/decisions/ADR-018-product-context-consolidation.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/decisions/ADR-014-conversation-continuity.md",
+      "sha256": "280af7e05d44dd54f8d550b20e7ab0be70babb8c33fc8e65757204a76a7f5529",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "docs/decisions/ADR-014-conversation-continuity.md",
+        "docs/decisions/ADR-018-product-context-consolidation.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/decisions/ADR-015-supportive-adaptive-guidance.md",
+      "sha256": "fe672a9361c8198384752611805b5254afb7c3eaee24e08d3f454959e5fb9f1b",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "docs/decisions/ADR-015-supportive-adaptive-guidance.md",
+        "docs/decisions/ADR-018-product-context-consolidation.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/decisions/ADR-016-public-reference-catalogue.md",
+      "sha256": "875f8bf3d29abb04a7512cc0c912f95a3e1dedfcb1e806b659cabd3cfe9c09d5",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "docs/decisions/ADR-016-public-reference-catalogue.md",
+        "docs/decisions/ADR-018-product-context-consolidation.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/decisions/ADR-017-demo-applications.md",
+      "sha256": "49c0fb3ed45a79cdf0c4de00e6188c36d520deb42af8536ff4b60956a81b2d88",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "docs/decisions/ADR-017-demo-applications.md",
+        "docs/decisions/ADR-018-product-context-consolidation.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/engineering/ADAPTIVE_GUIDANCE_RESEARCH.md",
+      "sha256": "8d8c34b7c8760bb72bbc92814d0f068a2b21d37e13b06dadc80dbfe7d6a5936f",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "docs/engineering/ADAPTIVE_GUIDANCE_RESEARCH.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/engineering/code-standards.md",
+      "sha256": "ba1a54d4f4a9af70f09b97ac977d7195c49bfd7a6019522d49d62f153a8944ed",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "docs/engineering/code-standards.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/engineering/COMPOSE_RUNTIME.md",
+      "sha256": "217cef5d696b067deda8068c75e0bde4fa5d15d941f872d33aba860134b60897",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "docs/engineering/COMPOSE_RUNTIME.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/engineering/development-lifecycle.md",
+      "sha256": "1cdb342c10432fbd6871ec55c16402622177cdf48ae6aee0ae613cd530ab192f",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "docs/engineering/development-lifecycle.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/engineering/DOCUMENT_INGESTION.md",
+      "sha256": "738a2b2ffb5861a74a67790a1a962a586c4b90bb77b60aefa0511f28333524b1",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "docs/engineering/DOCUMENT_INGESTION.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/engineering/git-and-github.md",
+      "sha256": "3c76451018c620ea0f1f97f2a3ab2503f739d35a59ac21e2cc40d406047bfef2",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "docs/engineering/git-and-github.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/engineering/LOCAL_RUNTIME.md",
+      "sha256": "782ee2a4f7cee1a938ac93a1dca158dcdffe8de84d7c260cd719186535a21cd5",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "docs/engineering/LOCAL_RUNTIME.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/engineering/quality-gates.md",
+      "sha256": "7ffd8bfd7a4e86fc61a18bf2e34fb1eac56193bb7d8a3c6eb1345b78ba9f5b3c",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "docs/engineering/quality-gates.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/engineering/security-and-production.md",
+      "sha256": "35752b2a166861f49b6c4c9d6e943020924db72ec133346be2ec56d16e00f163",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "docs/engineering/security-and-production.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/engineering/testing.md",
+      "sha256": "fa37e3d99527841d8caec31195ac52d248c9e257f821c52eca0c7c669ea83d3d",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "docs/engineering/testing.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/engineering/UI_THEME.md",
+      "sha256": "621925f32212b6ac5ce6d2f40e351c416d156bedd4e1c79e6f947fadb441e8fe",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "docs/engineering/UI_THEME.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/event/AI_IMPACT_STATEMENT.md",
+      "sha256": "43320b17dfb332d4852015ae3dafd706220b2f96e76e87bed4626cb3443dc3e6",
+      "disposition": "useful requirements/lessons distilled; temporary instructions/assets and duplicate generated context omitted",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/event/CURRENT_STATE.md",
+      "sha256": "7346a38b8f0427f720ae5ac934824d373fd4ccb5bda838a3405b347ab5720e04",
+      "disposition": "useful requirements/lessons distilled; temporary instructions/assets and duplicate generated context omitted",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/event/DATA_PROVENANCE.md",
+      "sha256": "0972bb0a977f2ad7ae7c48e1c5e5726677533575799766925e14a13fbb796c99",
+      "disposition": "useful requirements/lessons distilled; temporary instructions/assets and duplicate generated context omitted",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/event/DEMO_SCRIPT.md",
+      "sha256": "2e37202c3a55078c9e6a39cd9b7673f2af535b67b73d9ccfefabc2eabd977ed5",
+      "disposition": "useful requirements/lessons distilled; temporary instructions/assets and duplicate generated context omitted",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/event/DOCUMENT_REVIEW.md",
+      "sha256": "00050f0058a853940d3acc50945144e7c3b1543bf02137500632e7349cb1813f",
+      "disposition": "useful requirements/lessons distilled; temporary instructions/assets and duplicate generated context omitted",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/event/EVENT_PAGE.txt",
+      "sha256": "088b283bf2f972efd438476de8e08a74f9ec870d102b0ad169a9232c75800696",
+      "disposition": "useful requirements/lessons distilled; temporary instructions/assets and duplicate generated context omitted",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/event/LANGUAGE_REVIEW.md",
+      "sha256": "e26e2a5430d7bfa59f95cb70c884410f1c94d69f31d1199a5bb6ae1400021f86",
+      "disposition": "useful requirements/lessons distilled; temporary instructions/assets and duplicate generated context omitted",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/event/PARTICIPANT_HANDBOOK.txt",
+      "sha256": "0aec466739f01206a35db821b8302232100cfeca7911779450ed6083224c6402",
+      "disposition": "useful requirements/lessons distilled; temporary instructions/assets and duplicate generated context omitted",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/event/PITCH_DECK.md",
+      "sha256": "ba7788539a07562fd8d2477ba1c854e2929a92ae2f545ff03f80a5dc3ad4a7ea",
+      "disposition": "useful requirements/lessons distilled; temporary instructions/assets and duplicate generated context omitted",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/event/POSTMAN_CHECK.md",
+      "sha256": "f69483f2ae17e4eadee96ac68e33042558495afcc243acdba53c5c71df2c5ba7",
+      "disposition": "useful requirements/lessons distilled; temporary instructions/assets and duplicate generated context omitted",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/event/PREPARATION_PLAN.md",
+      "sha256": "dfc3fe6ebf5423b89c32d199b5b4d24b42f13e021281bdb477510811283846ad",
+      "disposition": "useful requirements/lessons distilled; temporary instructions/assets and duplicate generated context omitted",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/event/PRIOR_WORK_DISCLOSURE.md",
+      "sha256": "2a9c5275f1bec79db0ae7b8a561ca276b52523c2e5f1b319cf5e52472e6a25d4",
+      "disposition": "useful requirements/lessons distilled; temporary instructions/assets and duplicate generated context omitted",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/event/READINESS_CHECK.md",
+      "sha256": "ecd9fcbe181daa8ce642e0d3b049a4676b52bda3c14a9fb9451f95ae416278b8",
+      "disposition": "useful requirements/lessons distilled; temporary instructions/assets and duplicate generated context omitted",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/event/RESOURCE_PLAN.md",
+      "sha256": "eb80c9be4e9accf0b705e4fe20654a14597f8a820fda61fc6fe5f87bf05a8efd",
+      "disposition": "useful requirements/lessons distilled; temporary instructions/assets and duplicate generated context omitted",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/event/SOURCES.md",
+      "sha256": "fcc0606f422c85374deffb4e5bd3223f3c11969a1d562642cd8aec5b10e7bfed",
+      "disposition": "useful requirements/lessons distilled; temporary instructions/assets and duplicate generated context omitted",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/event/SUBMISSION_PLAN.md",
+      "sha256": "df650ca42998d7cccb56278254ac9f32bb1bf7ac6c5b53fe17ee17943f125084",
+      "disposition": "useful requirements/lessons distilled; temporary instructions/assets and duplicate generated context omitted",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/intent/admissions-flow-and-discounts.md",
+      "sha256": "0926b33f68ceb84774d64c15766db025e99059aa41a2aedfbc228926130303a6",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "docs/intent/admissions-flow-and-discounts.md",
+        "SPEC.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/planning/archive/2026-10-23-before-telegram-alignment/docs/event/PREPARATION_PLAN.md",
+      "sha256": "0b3bb8893aa03082dca161e5b6b556eafb093cf39ed3e2c29877fd60bf76dc0a",
+      "disposition": "useful requirements/lessons distilled; temporary instructions/assets and duplicate generated context omitted",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/planning/archive/2026-10-23-before-telegram-alignment/docs/event/RESOURCE_PLAN.md",
+      "sha256": "a89f720afdeed631a66b3b49655eb69411f5f5e212461e37c6b531f067f716f4",
+      "disposition": "useful requirements/lessons distilled; temporary instructions/assets and duplicate generated context omitted",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/planning/archive/2026-10-23-before-telegram-alignment/docs/event/SUBMISSION_PLAN.md",
+      "sha256": "cc5434a38e0dbb14600ed452fe088f84797b1ef951aba38642cde4be0e11f446",
+      "disposition": "useful requirements/lessons distilled; temporary instructions/assets and duplicate generated context omitted",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/planning/archive/2026-10-23-before-telegram-alignment/EVENT_CONTEXT.md",
+      "sha256": "b45b3e07badcbc36de21030a0d83a91c555c3f1ad1085a2f5bc25064cc2394cd",
+      "disposition": "useful requirements/lessons distilled; temporary instructions/assets and duplicate generated context omitted",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/planning/archive/2026-10-23-before-telegram-alignment/README.md",
+      "sha256": "9c0ae82e54748b55a3dfc86bf6e937be72d4fbc7d9a95a0bb8e2b14afef16db7",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/planning/archive/2026-10-23-before-telegram-alignment/SPEC.md",
+      "sha256": "b10a9fca14fde56a0bf632d076d10c3be25e7ca188b7e8c79209deeb310905d0",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/planning/archive/2026-10-23-before-telegram-alignment/tasks/plan.md",
+      "sha256": "496d015b7d9213e8ed123177c17118870d7ed902a505c589992021941b5a53f9",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/planning/archive/2026-10-23-before-telegram-alignment/tasks/todo.md",
+      "sha256": "7db48501a47082ba01f8781f87cf5518cd3677b8d26360357dc50b83fd782ea9",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "docs/research/system-1-decision-models-laya-jev.md",
+      "sha256": "66ae41b0e2ab1afa630c13ba39ec231d12f6809e80b9b358688590ca6f72bee8",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "docs/research/system-1-decision-models-laya-jev.md",
+        "docs/decisions/ADR-008-system-1-decision-layer.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "EVENT_CONTEXT.md",
+      "sha256": "a790292a99e90cf1738a7cedd19c5b9b55f2b5d18d29a5a050c843f3eb76d8ef",
+      "disposition": "useful requirements/lessons distilled; temporary instructions/assets and duplicate generated context omitted",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "frontend/AGENTS.md",
+      "sha256": "063098f6cb31bb44c6f8fbea25b3876de7ee1e5f7d00a50dbab506f6415eb7f0",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "frontend/README.md",
+      "sha256": "e652ed752fe76880b9928fbfd8ffcbc24fe1a4a68bfea5fddbe78b35cf8789c3",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "graphify-out/GRAPH_REPORT.md",
+      "sha256": "1a0bf1969bc6d34922227d481eaa8f5cc6de1646534236ce2ab3ee8b4175537a",
+      "disposition": "useful requirements/lessons distilled; temporary instructions/assets and duplicate generated context omitted",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "README.md",
+      "sha256": "915881d055a4b4612d0e6fd580b794439fff5b88142a86becc44f9fd6a8ad221",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "SPEC.md",
+      "sha256": "b4faf3a5a1658aef00e4bc39ffa0321e577354e0d9902cc2b2dc9dbac50f7490",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "PRODUCT.md",
+        "SPEC.md",
+        "STATUS.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "tasks/plan.md",
+      "sha256": "dc761281275f63459298e9e9a291f02b2acd6eeac9319db75c5a759f6ebfdc30",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "tasks/plan.md",
+        "tasks/todo.md",
+        "docs/verification/IMPLEMENTATION_HISTORY.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    },
+    {
+      "repository": "admitflow",
+      "commit": "e195fc9d4bff750ee24dd68f603e04b3b6db48d7",
+      "original_path": "tasks/todo.md",
+      "sha256": "40fcb752d179f568e628673bb06ed5253710c48345a0301e123c72669dd44822",
+      "disposition": "covered by current specification/status; historical measurements remain source-specific",
+      "local_context": [
+        "tasks/plan.md",
+        "tasks/todo.md",
+        "docs/verification/IMPLEMENTATION_HISTORY.md",
+        "docs/planning/CONTEXT_RECONCILIATION.md"
+      ]
+    }
+  ]
+}

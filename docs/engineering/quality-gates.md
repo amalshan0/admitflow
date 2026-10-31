@@ -21,15 +21,9 @@ uv run mypy                    # type check, --strict, over src/
 uv run pytest                  # tests
 ```
 
-Verified green on this repo (uv 0.11.2, Python 3.12):
-
-```
-==> ruff (lint)          All checks passed!
-==> ruff (format check)  8 files already formatted
-==> mypy (strict)        Success: no issues found in 4 source files
-==> pytest               7 passed
-OK — all quality gates green.
-```
+Current command results belong in [tasks/todo.md](../../tasks/todo.md).
+Dated historical results remain in [verification](../verification/README.md); do not use
+an old example test count as evidence for the current checkout.
 
 Baseline also requires:
 - New behavior has tests (see [testing.md](testing.md)).
@@ -52,12 +46,11 @@ If you're unsure which tier applies, it's the higher one.
 ## CI mirrors this exactly
 
 [../../.github/workflows/ci.yml](../../.github/workflows/ci.yml) runs the identical baseline
-steps on every push to `main` and every PR. Green locally ⇒ green in CI. A PR merges only
+steps on every push to `main` and every PR. A local pass does not guarantee the same result on another platform. A PR merges only
 when CI is green **and** the review is clean. CI is the enforcement; `verify.sh` is the fast
 local copy so you never wait on CI to learn you forgot to format.
 
-> The CI YAML mirrors the locally-verified command set. It runs on GitHub Actions once a
-> remote exists; until then, `verify.sh` is the executable gate.
+Inspect the required GitHub checks on the current PR head; do not infer their result from a local pass.
 
 ## Fast iteration vs the gate
 

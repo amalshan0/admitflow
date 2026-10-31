@@ -289,23 +289,13 @@ A reset excludes earlier chat from future model context and clears unfinished ex
 a draft. It preserves institutional history, submitted applications/payments, reminder choices
 and active staff requests. It is not a data-erasure command.
 
-## Verification and current scope
+## Verification and product status
 
-The latest catalogue release passed:
-
-- **313 default backend tests**, lint/format and strict typing across **127 source files**.
-- **121 PostgreSQL cases**, with two Redis-specific cases skipped in that run, plus six
-  final focused reset/reference/application/payment cases.
-- Frontend lint/build and an authenticated reference-catalogue check at desktop and mobile widths.
-- Three live synthetic OpenAI/RAG checks against the imported catalogue. Separate earlier
-  handset checks confirmed Telegram replies, a staff reply and an uploaded-PDF answer.
-
-These are bounded implementation checks, not measured student outcomes or a production
-certification. The [release record](docs/event/JAIN_KOCHI_RELEASE.json),
-[handset evidence](docs/event/LIVE_HANDSET_RESULTS.json) and
-[task list](tasks/todo.md) retain the details and limitations.
-
-Run the standard checks:
+The platform includes adaptive guidance, institution knowledge, applications/review,
+payment integration and a broader staff workspace. [STATUS.md](STATUS.md) separates
+implemented capabilities, dated verification and unfinished production acceptance.
+[Technical records](docs/verification/README.md) retain source-specific checks; no old
+count or recording is a current readiness guarantee.
 
 ```bash
 # From backend/:
@@ -318,93 +308,51 @@ npm run lint
 npm run build
 ```
 
-The backend default gate uses isolated test configuration. Integration tests require Docker;
-live browser checks additionally require the configured local application. See the
-[testing guide](docs/engineering/testing.md) before running provider-dependent evaluations.
+Default tests fake external providers. Integrations need disposable Docker services;
+live model/browser/handset checks have separate prerequisites and authority. See the
+[testing guide](docs/engineering/testing.md).
 
-### Current reference catalogue
+## Development data and production boundaries
 
-The owner's local workspace contains **64 published JAIN Kochi programme options** and
-**65 indexed official-source documents**. This is an independent public-information
-example, with [source provenance and boundaries](docs/decisions/ADR-016-public-reference-catalogue.md).
-Public listings do not verify current fees, intakes, seats or admission approval. Reference
-records support exploration and cannot accept university applications or payments here.
-The snapshot is in [backend/data/jain-kochi/catalogue.json](backend/data/jain-kochi/catalogue.json).
+Real admissions require an authorised institution's maintained catalogue, intakes, rules,
+fees and operating policy. The tracked JAIN Kochi public-reference snapshot supports
+independent information/development and does not establish university representation,
+prices, seats or admission authority. Synthetic seeds and the legacy reference-course
+sample application/test-payment mode remain explicitly development-only.
 
-Razorpay test credentials have passed a read-only provider check and are stored encrypted in
-the local institution configuration. Actual test-card and public webhook validation remain
-open. Live payments remain disabled, and public production deployment has not been performed.
+See [development modes](docs/engineering/DEVELOPMENT_MODES.md) and
+[data/model provenance](docs/DATA_PROVENANCE.md). Latest-flow test-card/handset acceptance,
+production operations and a real institution pilot remain open. Public deployment has
+not been performed and requires the owner's instruction.
 
-## Security and operational boundaries
+## Security and operations
 
-- Institution-scoped queries and database constraints separate tenant records.
-- Staff authentication, roles and scoped sessions control dashboard/API access.
-- Sensitive identifiers, conversation payloads and original upload bytes use application-layer
-  encryption. Knowledge passages remain institution-scoped reference text.
-- Signed controls, durable inbox/outbox records and audit logs protect state transitions.
-- Consent and configured office hours govern automated follow-ups.
-- Prices and eligibility come from configured institutional data, with explicit application
-  review. Meeting an entry rule does not grant admission or reserve a seat.
-- Missing evidence and uncertain provider outcomes remain visible rather than becoming
-  invented answers or automatic retries.
+Tenant-scoped queries/constraints, staff roles/sessions, sensitive-field encryption,
+signed controls, durable delivery, audit, reminder consent and retention/deletion are
+part of the product. Prices and academic rules come from maintained records. Payment
+and eligibility do not by themselves grant admission. Missing evidence and uncertain
+provider outcomes remain visible.
 
-See [security and production readiness](docs/engineering/security-and-production.md) for
-hosting requirements. Production use also needs approved institution material, HTTPS,
-operational monitoring, backups and recovery validation.
-
-## Repository structure
-
-```text
-admitflow/
-├── backend/
-│   ├── src/
-│   │   ├── engine/       # Conversation, guidance and application flows
-│   │   ├── knowledge/    # Parsing, indexing, retrieval and reranking
-│   │   ├── telegram/     # Institution bot receiver, identity and delivery
-│   │   ├── staff/        # Authenticated workspace APIs
-│   │   ├── payments/     # Provider integration and webhook processing
-│   │   ├── tasks/        # Background jobs and recovery
-│   │   ├── db/           # Tenant models and persistence
-│   │   └── scripts/      # Provisioning and bounded validation tools
-│   ├── migrations/      # Alembic schema migrations
-│   ├── data/            # Sourced public reference snapshot
-│   └── tests/           # Unit and integration checks
-├── frontend/
-│   ├── app/             # Next.js staff workspace
-│   └── tests/           # Playwright browser checks
-├── docs/                # Engineering guides, decisions and event evidence
-├── tasks/               # Existing implementation plan and completion records
-├── docker-compose.yml   # Isolated local full-stack runtime
-└── SPEC.md              # Product behavior and constraints
-```
+See [security and production](docs/engineering/security-and-production.md) for hosting,
+backups/restores, monitoring, privacy policy and release/rollback requirements.
 
 ## Documentation
 
-| Resource | Contents |
-| --- | --- |
-| [Product specification](SPEC.md) | Expected behavior and scope |
-| [Implementation plan](tasks/plan.md) and [task list](tasks/todo.md) | Work breakdown and verified progress |
-| [Architecture decisions](docs/decisions/) | Provider, conversation, retrieval and safety decisions |
-| [Backend guide](backend/README.md) | Configuration, endpoints and provisioning |
-| [Document ingestion](docs/engineering/DOCUMENT_INGESTION.md) | Parsing, indexing and worker operations |
-| [Guidance research](docs/engineering/ADAPTIVE_GUIDANCE_RESEARCH.md) | Research-to-behavior mapping and assessment limits |
-| [AI Impact Statement](docs/event/AI_IMPACT_STATEMENT.md) | AI use, safeguards and intended impact |
-| [Data/model provenance](docs/event/DATA_PROVENANCE.md) | Source material and upstream terms |
-| [Prior-work disclosure](docs/event/PRIOR_WORK_DISCLOSURE.md) | Existing foundation and subsequent implementation |
+Start with [PRODUCT.md](PRODUCT.md), [SPEC.md](SPEC.md), [STATUS.md](STATUS.md), then
+[the documentation map](docs/README.md). Implementation work stays in
+[tasks/plan.md](tasks/plan.md) and [tasks/todo.md](tasks/todo.md). Architecture decisions,
+guidance research, engineering guides and verification are maintained here. The
+[context reconciliation](docs/planning/CONTEXT_RECONCILIATION.md) captures inherited
+product decisions locally; no other repository is required.
 
 ## Contributing
 
-Start with [AGENTS.md](AGENTS.md) and the
-[development lifecycle](docs/engineering/development-lifecycle.md). Use a feature branch,
-add meaningful checks for behavior changes, pass the quality gate and open a pull request.
-Changes to authentication, tenant scope, student data or payments need particular review.
-Use GitHub issues to report reproducible problems without credentials or applicant data.
+Read [AGENTS.md](AGENTS.md) and [the development lifecycle](docs/engineering/development-lifecycle.md).
+Use a feature branch, meaningful checks, adversarial review and green CI before merging.
+Protect tenant authority, applicant data and payments. Report reproducible issues without
+credentials or private applicant content.
 
 ## Owner and license
 
-**Shan** is the owner and solo contributor submitting AdmitFlow for AIBoomi Startup Weekend.
-The project continues an existing foundation; the repository preserves its
-[prior-work disclosure](docs/event/PRIOR_WORK_DISCLOSURE.md).
-
-Project source is available under the [MIT License](LICENSE). Dependencies, model assets,
-public reference material and event documents retain their respective terms.
+Shan is the owner and solo contributor. Project source uses the [MIT License](LICENSE).
+Dependencies, model assets and public reference material retain their respective terms.

@@ -5,25 +5,25 @@ Antigravity, Gemini, …). Read this first, then follow the handbook it links to
 
 ## What this project is
 
-**AdmitFlow** — an AI-native, multi-tenant Telegram admissions-engagement platform for
-institutions in Kerala, India. Readiness-aware, tap-first, multilingual
-(English / Hindi / Hinglish / Malayalam). Python backend (FastAPI + TaskIQ + a hand-rolled
-conversation engine, pgvector RAG, OpenAI); Next.js admin dashboard. Applications/review
-payments, co-pilot, consent-aware follow-ups, institution administration, reporting
-and privacy controls have local automated evidence. Live payment validation and
-production operations remain open. ADR-017 adds explicit development-only demo
-applications for reference courses, with a separate sample fee, Razorpay test payment
-and staff review; it grants no university admission or seat. Typed OpenAI decisions and passage reranking
-use the existing API configuration; no model training is planned. See ADR-012 for
-the current channel/provider decision and tasks/todo.md for verified progress.
+**AdmitFlow** is the maintained institutional admissions-engagement product for Kerala.
+Students receive adaptive English course guidance through Telegram; staff use a Next.js
+workspace over Python/FastAPI, PostgreSQL/pgvector and Redis/TaskIQ. OpenAI supplies typed
+interpretation, guidance, embeddings and passage reranking; code owns eligibility, money,
+tenant authority and consequential changes. No model training is planned.
 
-Current conversation work is **Task 61**, English adaptive course guidance. It
-supersedes language-choice onboarding and the menu-first discovery loop. Interest
-notes are exploratory and separate from academic eligibility; see ADR-013 and
-[the research record](docs/engineering/ADAPTIVE_GUIDANCE_RESEARCH.md).
+Read [PRODUCT.md](PRODUCT.md), [SPEC.md](SPEC.md), [STATUS.md](STATUS.md), then
+[tasks/plan.md](tasks/plan.md) and [tasks/todo.md](tasks/todo.md). The
+[documentation map](docs/README.md) and [context reconciliation](docs/planning/CONTEXT_RECONCILIATION.md)
+make this repository self-contained. Historical source records do not override current decisions.
 
-- Spec: [SPEC.md](SPEC.md) · Execution: [tasks/plan.md](tasks/plan.md) · Progress: [tasks/todo.md](tasks/todo.md)
-- Decisions: [docs/decisions/](docs/decisions/) (ADRs) · Plan & tasks: [tasks/](tasks/)
+**Task 71**, context consolidation under ADR-018, is implemented and locally verified;
+[PR #25](https://github.com/Shan091/admitflow/pull/25) records CI and merge status.
+The next product milestone is **Task 72**, authorised institution pilot data. Existing applications,
+payments, co-pilot, institution controls, follow-ups, reporting and privacy have bounded
+implementation evidence. Production operation and remaining live acceptance are open.
+Reference data and legacy sample-application controls are development-only; see
+[development modes](docs/engineering/DEVELOPMENT_MODES.md). Never remove their labels/guards
+or convert them into real admissions by changing copy.
 
 ## How we build — read the handbook
 
@@ -73,11 +73,9 @@ A navigable graph of the repo lives in `graphify-out/`. For codebase questions, 
 `graphify update .` after code changes. See [the graph report](graphify-out/GRAPH_REPORT.md)
 for the current extraction; source and test evidence determine implementation status.
 
-## AIBoomi Startup Weekend handoff
+## Working context
 
-Read [EVENT_CONTEXT.md](EVENT_CONTEXT.md) first when resuming event preparation.
-It contains the user decisions, event rules, readiness findings, unknowns, and a fresh-chat prompt.
-Read [docs/event/PREPARATION_PLAN.md](docs/event/PREPARATION_PLAN.md) for the next steps.
-Use this v1 repository itself; do not create another local repository.
-Keep all durable event context in this repository, not in .codex.
-Preserve existing changes and deletions. No fresh runtime verification is claimed by these docs.
+Use this repository; no separate repository is needed. Preserve unrelated changes,
+existing records, credentials and migrations. Keep durable product decisions here.
+No public deployment without the owner's instruction. Update STATUS, current tasks,
+relevant specifications/ADRs and verification links when behaviour changes.

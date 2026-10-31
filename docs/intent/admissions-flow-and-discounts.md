@@ -1,8 +1,15 @@
-# Intent: Admissions Flow and Discounts
+# Intent: admissions review and configured discounts
 
-- **Outcome:** Model the messy reality of admissions by inserting a manual "Application Review" step after payment, and allow the AI to use pre-defined discount codes as a sales tool.
-- **User:** Institution Admissions Staff (who review applications and define discount codes) and Students (who get a smoother, more flexible payment experience).
-- **Why now:** Because paying an application fee doesn't guarantee enrollment, and fixed prices without discount codes lose potential leads who are price-sensitive. 
-- **Success:** The AI can suggest active discount codes (fetched from the database). If the user accepts, the AI passes the code to the backend. **The Python backend validates the code and calculates the final Razorpay amount** (preserving our safety guardrails). After payment, the lead goes to an `under_review` queue in the dashboard where staff can "Approve", "Waitlist", or "Reject".
-- **Constraint:** We must add a `discount_codes` table to the database, update the LLM prompt to inject available codes, and add the review states (`under_review`, `rejected`, `waitlisted`) to the state machine before we start writing the backend code.
-- **Out of scope:** The AI inventing its own discounts, negotiating percentages, or processing refunds for rejected students (refunds happen manually in Razorpay).
+Institutions need an application review after payment because payment does not by itself
+grant admission. Staff approve, waitlist or reject through authorised recorded actions.
+Application/review states, discounts, Razorpay integration and staff surfaces now exist;
+remaining latest-flow provider/handset/production acceptance is in STATUS and Task 73.
+
+Institutions define discount codes in structured records. The assistant may suggest an
+active code; backend validation owns its validity and final amount. AI cannot invent or
+negotiate discounts. Refund handling remains a staff/provider responsibility.
+
+Real admissions use authorised courses, rules, fees, intakes and review/capacity policy.
+The legacy development reference exception (ADR-017) keeps a separate sample fee and does
+not allow a discount to waive its required test payment. It grants no university seat.
+See [SPEC.md](../../SPEC.md) and [development modes](../engineering/DEVELOPMENT_MODES.md).

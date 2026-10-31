@@ -46,7 +46,7 @@ def main() -> None:
         for path in sorted(paths)
     }
     fingerprint = hashlib.sha256(json.dumps(files, sort_keys=True).encode()).hexdigest()
-    target = root / "docs/event/BUILD_MANIFEST.json"
+    target = root / "docs/verification/BUILD_MANIFEST.json"
     target.write_text(
         json.dumps(
             {

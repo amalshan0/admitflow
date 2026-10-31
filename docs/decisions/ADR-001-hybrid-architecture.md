@@ -1,31 +1,27 @@
-# ADR-001: Hybrid Architecture (Python Backend + Next.js Frontend)
+# ADR-001: Python backend and Next.js frontend
 
-## Status
-Accepted — with one later revision: the conversation engine is a **hand-rolled async dispatcher**, not LangGraph (superseded by ADR-007 / SPEC §17.1). The hybrid Python-backend + Next.js-frontend split below stands.
+Status: Accepted for the backend/frontend split; current boundaries are clarified by
+ADR-012 and [ADR-018](ADR-018-product-context-consolidation.md).
 
+## Decision and rationale
 
-## Context
-AdmitFlow requires handling Meta WhatsApp webhooks within a strict 5-second timeout, executing complex AI state machine logic (LangGraph), and providing a premium, highly interactive dashboard (glassmorphism UI) for institution staff. We need to decide on the core technology stack.
+FastAPI/Python owns business rules, persistence, AI boundaries and background work.
+Next.js/TypeScript owns the staff interface and uses authenticated Python APIs.
+This keeps complex admissions/payment/tenant decisions in one domain implementation
+while supporting an interactive accessible workspace.
 
-## Decision
-Use a Hybrid Architecture:
-- **Backend**: Python (FastAPI + TaskIQ + LangGraph + PostgreSQL)
-- **Frontend**: Next.js (TypeScript + React + Tailwind CSS)
+The conversation engine is a plain async dispatcher with persisted per-turn context.
+LangGraph/checkpointer proposals were replaced because routing already has a typed
+boundary and the dashboard needs queryable conversation records; duplicating state
+in another checkpoint store would add operational/debugging complexity.
 
-## Alternatives Considered
-
-### Full TypeScript (Next.js for API + Frontend)
-- Pros: Single language (TypeScript), unified monorepo.
-- Cons: The Python ecosystem for AI (LangGraph, LangChain, TaskIQ, pgvector integrations) is vastly superior and more mature than JavaScript equivalents. Heavy AI processing in Node.js event loop can cause latency spikes.
-- Rejected: We need state-of-the-art AI tooling and background worker isolation, which Python handles better.
-
-### Full Python (FastAPI + Jinja2/HTMX)
-- Pros: Single codebase, very fast to build.
-- Cons: Cannot easily achieve the complex, highly interactive "glassmorphism" premium UI and real-time WebSocket dashboard the product vision demands.
-- Rejected: The UI needs the rich component ecosystem of React.
+The original alternatives were a full TypeScript application and server-rendered Python.
+Neither is a current migration plan. Original WhatsApp timing, Tailwind and dark/glass
+styling assumptions do not govern the active product. Telegram/OpenAI, plain CSS and
+current workspace tokens are recorded in the active specification and engineering guides.
 
 ## Consequences
-- Requires maintaining two separate deployment pipelines (Fly.io for backend, Vercel for frontend — hosting finalized in ADR-007, superseding the original Railway mention).
-- Clean separation of concerns: Frontend has zero business logic, Backend is a pure REST API.
-- Team needs proficiency in both Python and TypeScript.
-- **Engine revision**: The backend keeps FastAPI + TaskIQ + PostgreSQL, but LangGraph was dropped in favour of a hand-rolled dispatcher once routing moved into the System-1 `decide()` layer (ADR-008). Rationale in SPEC §17.1 / ADR-007.
+
+Python authorisation/validation remains authoritative even when a frontend action is
+hidden. Preserve tenant identity through the API/session boundary. Run backend and
+frontend gates for their changed surfaces; a frontend proxy is not its own business API.

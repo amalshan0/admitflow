@@ -161,7 +161,9 @@ async def evaluate() -> dict[str, Any]:
 
 def main() -> None:
     result = asyncio.run(evaluate())
-    path = Path(__file__).resolve().parents[3] / "docs/event/SUPPORTIVE_GUIDANCE_RESULTS.json"
+    path = (
+        Path(__file__).resolve().parents[3] / "docs/verification/SUPPORTIVE_GUIDANCE_RESULTS.json"
+    )
     path.write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     if result["passed"] != result["total"]:
         raise SystemExit(1)

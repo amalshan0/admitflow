@@ -1,379 +1,260 @@
 # AdmitFlow specification
 
-Scope approved by the user; implementation progress is tracked in tasks/todo.md.
-The active roadmap is [tasks/plan.md](tasks/plan.md), and implementation acceptance
-lives in [tasks/todo.md](tasks/todo.md). Architecture changes are recorded in
-[ADR-012](docs/decisions/ADR-012-telegram-openai-mvp.md).
+[PRODUCT.md](PRODUCT.md) defines the institutional product. This specification defines
+required behaviour; [STATUS.md](STATUS.md) and [verification](docs/verification/README.md)
+identify implementation and acceptance evidence. Requirements do not imply delivery.
+The active roadmap is [tasks/plan.md](tasks/plan.md). ADR-018 governs context consolidation.
 
-## 1. Product and first release
+## 1. Scope and authority
 
-AdmitFlow helps institutions manage admissions inquiries. Students explore courses,
-ask questions and share relevant information through Telegram. Staff receive a
-persisted inquiry with conversation context and a code-evaluated eligibility result.
-Institutions are the proposed paying customers; revenue and adoption are unvalidated.
+One multi-tenant admissions-engagement product serves institutions in Kerala. Students
+and parents explore institution offerings, obtain grounded answers, share necessary
+details and proceed through applications/payment/review when ready. Authorised staff
+manage the relationship with its conversation evidence. Tenant separation applies even
+when development uses one institution.
 
-The first release succeeds when a real Telegram student conversation produces a
-correct, persisted inquiry that authorized staff can inspect in the dashboard.
-Use a fictional institution and synthetic student/catalog data for the event.
-One institution is demonstrated first; tenant isolation remains mandatory.
+Telegram private chat is the active channel, OpenAI the hosted AI provider and English
+the current adaptive-guidance language. Multilingual experience and self-service institution
+onboarding remain product scope with unfinished acceptance. WhatsApp is disabled compatibility
+code; no provider/vendor restoration is implied by the original vision.
 
-### Included in the first release
+Institutions control courses, intakes, fees, rules, reference content and operating settings.
+They need not author a fixed dialogue script. Real admissions use authorised maintained
+records. Public programme references and synthetic fixtures are separate operating modes.
 
-- Telegram private-chat onboarding and language preference.
-- Active course and batch exploration/selection with buttons.
-- Short, context-aware eligibility questions with typed extraction and code-owned rules.
-- Persistent conversation memory, corrections and continuity after restart.
-- Institution FAQ answers from approved knowledge, internal source references and honest abstention.
-- Adaptive English course guidance using explicit interests/background, contextual questions,
-  optional deeper exploration and honest catalog/eligibility boundaries (Task 61).
-- Persisted lead, conversation, facts, selected course/batch and eligibility evidence.
-- Staff login, tenant-scoped lead list/detail, conversation history and human-request queue.
-- Input/retrieval/output checks, duplicate/concurrency handling, clear failure states,
-  privacy controls and basic sanitized operational telemetry.
+## 2. Architecture and data ownership
 
-### Later product phases
-
-Application collection/review, Razorpay payments and discounts, chat takeover and
-co-pilot suggestions, consent-aware follow-ups, course/rule/document management,
-analytics, exports, outbound integrations, notifications, institution settings and
-production operations remain on the roadmap. The decision layer uses typed OpenAI
-outputs with no fine-tuning or self-hosted model. OpenAI passage reranking is required
-in the current release: rank approved tenant candidates before FAQ quotation and
-staff-search selection, preserving relevance thresholds and safe baseline fallback.
-
-## 2. Stack and architecture
-
-| Layer | Decision |
+| Layer | Current decision |
 | --- | --- |
-| Student interface | Telegram Bot API; private chats for the first release |
-| API/domain logic | Existing Python >=3.12, FastAPI, Pydantic and uv project |
-| Conversation engine | Hand-rolled async dispatcher; persistent state reloaded each turn |
-| Database | PostgreSQL, SQLAlchemy async, Alembic; pgvector in the same database |
-| Queue/coordination | TaskIQ + Redis; interactive jobs and a separate serial knowledge worker, scoped dedup and locks |
-| Document parsing | Offline CPU Docling layout/tables for digital PDFs, ordered DOCX blocks and Markdown section/table-aware chunks; no OCR |
-| AI | OpenAI for interpretation, typed extraction, grounded replies and embeddings |
-| AI wrapper | Retain the existing wrapper initially, configure OpenAI only; SDK migration is unnecessary for this milestone |
-| Staff UI | Next.js and TypeScript; plain CSS for the initial knowledge workspace; business rules and authorization stay in Python |
-| Local runtime | Docker-backed PostgreSQL/Redis, API, receiver/worker and later the frontend |
-| Monitoring | Correlated sanitized logs, model/usage/latency/error evidence; external vendors optional |
-| Hosting | Select during release planning; earlier Fly.io/Vercel/Neon choices are candidates, not deployed facts |
+| API/domain | Python >=3.12, FastAPI, Pydantic, uv |
+| Conversation | Plain async dispatcher; reload durable context per turn |
+| Persistence | PostgreSQL, SQLAlchemy async, Alembic, pgvector |
+| Jobs/coordination | Redis/TaskIQ, recoverable database inbox/outbox, separate serial knowledge worker |
+| AI | OpenAI-only configured interpretation, extraction, guidance, quotation selection and embeddings; typed decisions and required passage reranking |
+| Document extraction | Offline CPU Docling for digital PDF structure/tables; ordered DOCX and section-aware text; no OCR |
+| Staff UI | Next.js/TypeScript/plain CSS; Python owns business logic and authorisation |
+| Operation | Isolated Compose or documented native processes; production host unselected |
 
-No Neysa, SerpAPI, Gemini, Anthropic, self-hosted decision models, LangGraph or separate vector
-database is required. No extra service is added merely to use sponsor credits.
-Model identifiers live in configuration; selecting OpenAI does not establish access,
-output-schema compatibility, quota, language quality or latency for a particular model.
+Model IDs, deadlines, retries and thresholds live in configuration. No training,
+distillation, self-hosted decision model, graph framework, separate vector database or
+extra hosted inference provider is planned. Schema-valid model output still needs domain
+validation. Optional telemetry vendors must not introduce unapproved data transfers.
 
-```mermaid
-flowchart LR
-    S[Student in Telegram] --> T[Telegram adapter]
-    T --> I[Persisted inbound event]
-    I --> Q[Redis / TaskIQ]
-    Q --> E[Conversation engine]
-    E <--> D[(PostgreSQL / pgvector)]
-    E <--> O[OpenAI]
-    E --> V[Validate and persist reply]
-    V --> T
-    U[Staff dashboard] <--> A[Authenticated FastAPI endpoints]
-    A <--> D
-```
+Tenant-scoped courses, batches, rules, discounts, leads, facts, messages, applications,
+invoices, staff sessions, uploads, jobs and audit records are persisted. Institution/bot
+identity determines authority server-side; client tenant IDs are never sufficient.
 
-## 3. Telegram identity and transport
+## 3. Telegram transport and identity
 
-- Provision one bot per institution for the first version. Trusted server-side bot
-  configuration resolves the tenant; client payloads cannot choose another tenant.
-- Identify a student using a tenant/bot-scoped Telegram user identifier. Track chat
-  routing separately. A Telegram identifier or username is not a verified phone number.
-- Add channel identities instead of putting Telegram IDs into phone fields. Existing
-  WhatsApp rows/history remain intact. Contact phone is optional and explicitly supplied.
-- Protect routing identifiers and personal information; use scoped keyed lookup values
-  where practical, ciphertext for recoverable sensitive values, and stable internal IDs.
-- Normalize `/start`, text and course/batch callbacks into typed engine events. Handle
-  unsupported media and group/channel messages explicitly without accidental escalation.
-- Choose long polling for the initial local/event receiver, with one active receiver
-  per bot. Persist accepted events before advancing the offset; recover unpublished
-  pending events after queue failures/restarts. Polling and webhooks cannot run together.
-- Hosted webhooks are a later transport option requiring HTTPS, secret-token checking,
-  validation and durable acceptance before success. An HTTP 200 is not delivery evidence.
-- Dedup updates by bot/update ID; scope message IDs by bot/chat. Serialize a conversation
-  with a tenant/channel/bot/chat lock. Do not use usernames as stable identity keys.
-- Acknowledge button callbacks promptly, validate actor/chat/tenant ownership and current
-  course availability, and handle stale/forged buttons without changing another lead.
-- Sanitize logging around Telegram URLs, which contain the bot token. Store tokens only
-  in ignored local configuration or a deployment secret store.
+- One institution-owned bot per institution initially. Trusted bot configuration resolves
+  the tenant; bot-scoped user/chat identity resolves the lead.
+- Telegram IDs/usernames are not verified phones. Optional contacts are explicitly supplied;
+  never fabricate phone values. Encrypt recoverable routing/content; use scoped keyed lookups.
+- Support `/start`, text and signed callbacks in private chats. Handle unsupported media
+  and group/channel messages explicitly. Bind callbacks to actor/chat/tenant; reject stale
+  and forged choices. Acknowledge callbacks promptly.
+- Initial operation uses one long-poll receiver per bot with a database receiver lock.
+  Commit accepted updates/checkpoints durably and recover unpublished work. Webhooks need
+  authenticated HTTPS and the same durable contract. Polling and webhooks cannot coexist.
+- Deduplicate by bot/update identity, serialize per tenant-owned conversation and preserve
+  reply order. Persist send outcomes; ambiguous timeouts are not blindly retried. Do not
+  claim exactly-once external delivery or log bot-token URLs. Never start a second receiver
+  for an existing bot against another data profile.
 
-## 4. Student journey and business behavior
+## 4. Adaptive student guidance
 
-### Onboarding and language
+`/start` introduces the institution and opens English conversation or resumes the relevant
+draft. Accurately disclose the operating context; no compulsory language menu or fixed
+course-first interview. `/guide`, `/assessment` and `/courses` are shortcuts; deeper
+exploration is optional and unscored.
 
-`/start` introduces the institution and purpose in English, labels synthetic demo use,
-and opens course exploration or resumes an active application draft. Language selection
-is deferred under the current owner decision; no compulsory language menu is shown.
-English, Hindi, Hinglish and Malayalam remain intended languages. Verify each supported
-language before advertising it; fluent-speaker review is required for language-quality
-claims. Preference storage alone is not proof of a localized or fluent experience.
+Interpret the current turn before planning. Reuse explicit background, interests,
+experiences, strengths, goals, values, constraints and dislikes. Keep literal evidence
+notes encrypted and correctable; replace only explicitly corrected evidence and preserve
+unrelated information. Academic facts are separate from exploratory notes.
 
-### Conversation continuity and collection (Task 62)
+Choose one useful next question, with contextual taps where they lower effort. Uncertain
+learners can use everyday activities; lack of exposure is not dislike and low confidence
+is not inability. Do not demand portfolio/project proof for a beginner course unless an
+actual entry requirement needs it. Greetings, questions, refusals and unrelated turns
+must not become form values or invented preferences.
 
-A confirmed course/intake and verified entry rules start an application draft without
-an extra application menu. Reuse explicit validated details, ask only for missing fields,
-and accept multiple details/corrections in a message. Do not turn greetings, questions,
-refusals or acknowledgments into form values. A birthdate is never inferred from age.
-Submission always requires a final review and explicit confirmation.
+Offer up to three supported matches with literal student/course evidence and clear reasons
+and trade-offs. Schooling alone is not interest fit. Decided students can proceed without
+optional exploration. Inspection/recommendation does not select a course; selection needs
+explicit valid confirmation. Changes invalidate stale controls.
 
-Students can pause with `/pause`, resume with `/apply`, and explicitly discard an
-unfinished draft with `/cancel`. Questions and further course exploration can interrupt
-collection. Repeated prompts omit storage implementation details and cancellation menus.
+If no offering fits, acknowledge the gap and optionally suggest up to two general fields
+to research elsewhere. Do not push unrelated courses or invent institutions, duration,
+jobs, placement, salary or admission claims. Repeated uncertainty changes or simplifies
+the next move. Questions, changes, pauses and corrections preserve useful context.
 
-`/reset` requires a signed one-use confirmation, clears chat profile/facts/draft, and
-excludes earlier history from future model context. It preserves submitted applications,
-payments, institution contact records, reminder preferences and staff/safety ownership.
-It is not application deletion or a way around submitted-case review controls.
+Exploring/comparing/decided are revisable support needs, not psychological types. Interest
+themes are not aptitude, eligibility or personality scores. Use original contextual prompts;
+never copy/re-score formal instruments or imply inherited validity. See [research and
+limits](docs/engineering/ADAPTIVE_GUIDANCE_RESEARCH.md).
 
-While a reply is generated, Telegram shows best-effort typing with bounded attempts and
-cleanup on completion/failure. Simple greetings/form answers and a number answering the
-displayed eligibility field use code directly. Free-form guidance retains typed OpenAI
-interpretation and refreshed code-owned catalog checks. Model history is bounded and
-loaded in bulk, with tenant-scoped callback labels rather than raw signed payloads.
+Student and parent contributions should be distinct; student preference takes priority.
+Structured attribution remains unfinished. Future course-comparison metadata should separate
+learning goals, teaching medium, discussion support and delivery format. Never infer
+proficiency, schedules or unrecorded services. See context reconciliation for open choices.
 
-### Discovery and selection
+## 5. Catalogue, intakes and eligibility
 
-Only active institution courses with an available active batch are selectable. Present
-course details from configured catalog facts. Persist valid course and batch selection,
-including the case of multiple batches; do not silently select an arbitrary batch.
-Changing course invalidates the old result and recomputes applicable eligibility.
-Capacity is informational here; the inquiry flow does not reserve or sell a seat.
+For authorised admissions offerings, show institution-owned details and available active
+intakes. Explicitly choose among batches; inquiries do not reserve capacity. Revalidate
+activity, rules and availability before consequential actions, including changes during
+model requests. Public references can be explored without invented intakes or entry rules.
 
-### Qualification
+Configured rules have typed fields, operators and values: for example age `>=`, qualification
+equality or membership in allowed values. Code evaluates them; AI extracts only supplied
+facts. Ask relevant missing fields one at a time. Corrections trigger reevaluation. Refusal,
+invalid values and missing data do not mean approval. Do not apply one Grade 12 rule to all
+levels or approve a missing-rule course without explicit institutional policy.
 
-Use configured required fields, field types and operators. Ask one relevant missing
-question at a time and use the active question/state when interpreting short replies.
-Extract only explicitly supplied facts through typed schemas; validate values before
-storing/evaluating them. Refusal, invalid values and missing information are explicit
-outcomes, not eligibility approval. Accept corrections to existing facts and re-evaluate.
-No configured rule must not automatically mean eligible unless an explicit institution
-policy permits it. Do not swallow invalid transitions and still announce success.
+Keep eligible/not-eligible/needs-information/needs-staff-review distinct with rule evidence.
+Interest fit is not eligibility; eligibility is not admission, enrollment or a seat. AI
+cannot override failure. Course changes invalidate course-bound answers/results while
+preserving unrelated facts. Public listings do not authorise university applications or
+payments. Development exceptions are isolated in [development modes](docs/engineering/DEVELOPMENT_MODES.md).
 
-Distinguish `eligible`, `not eligible`, `needs information` and `needs staff review`.
-Persist the applicable rules, facts and reason for the current result. Eligibility is
-not admission, seat reservation or enrollment. AI cannot override a failed rule.
+## 6. Memory, lifecycle and applications
 
-### Memory
+Persist turns, processing/send outcomes, validated facts/corrections, selection, guidance
+stage and pending questions. Load bounded recent context chronologically, not the oldest
+limited slice. Persist before claiming success. Restarts must not lose progress or duplicate leads.
 
-Store inbound and outbound turns with event/channel IDs and processing/send status.
-Load the latest relevant turns in chronological presentation order, rather than the
-oldest limited set. Store approved facts and preferences durably. Corrections replace
-current facts with an audit trail; preserve the conversation evidence that explains them.
-Restarting a process or changing a preference must not create a duplicate lead or lose
-progress. Later rolling summaries must preserve corrections and material facts.
+Lifecycle records observed progress rather than a mandatory sequence. Separate exploration,
+academic eligibility, application state, staff ownership and payment status. The original
+lifecycle includes new/discovering/qualifying/admission-ready/form-collecting/payment-pending/
+under-review and staff-reviewed outcomes. Actual code/evidence define implemented transitions.
+Payment alone never means enrolled. Numeric readiness calibration and rolling summaries
+are not established features.
 
-### Institution knowledge
+A valid institutional course/intake and confirmed entry rules permit draft collection.
+Reuse explicit validated information; accept multiple fields/corrections and ask only what
+is missing. Name, birthdate, guardian/contact, address and education may be required where
+justified; no default collection of identity-proof numbers or inferred birthdate from age.
+Final review and explicit submission are mandatory.
 
-The first release includes an authenticated institution knowledge workspace. Institution
-administrators upload digital PDFs, DOCX and UTF-8 TXT/Markdown/CSV, individually or
-through folder selection. Preserve nested relative paths. PDFs may contain at most
-100 pages; scanned/blank pages require a searchable replacement (OCR is outside scope).
-Do not promise preservation of complex visual layouts or semantic table reconstruction.
+`/pause` preserves a draft; `/apply` resumes; `/cancel` explicitly discards it. Questions and
+exploration can interrupt collection. Signed one-use `/reset` clears profile/facts/draft
+and excludes earlier context from future prompts while preserving submitted applications,
+payments, institutional contacts, reminder preferences and staff/safety ownership. Reset
+is not erasure or a bypass of submitted-case controls.
 
-Default limits: 10 MiB per file, 30 MiB/25 files per request, 400,000 extracted characters,
-and 180 seconds per indexing attempt. Validate DOCX archive expansion before parsing.
-Encrypt original bytes and store durable queued/processing/ready/failed jobs; failures
-are visible and retryable. Deduplicate identical bytes per institution. A worker claims
-each attempt atomically, publishes all chunks together and recovers abandoned leases.
-Deleting an upload removes its chunks and prevents later worker publication. Only
-ready uploads appear in the workspace search. Source paths and passage numbers
-accompany results; a configurable similarity floor permits an empty result. This is
-document search. The Telegram journey can return a validated exact quotation with
-internal evidence after the relevance and support checks. Student-facing Telegram
-answers contain the quotation only, without a source filename or citation footer.
-Document/chunk identifiers, source path and passage number remain in the encrypted
-saved reply for internal traceability; staff document search retains its source display.
-Complex parsing and
-multilingual retrieval evaluation remain in Task 42/52.
+Typing feedback is bounded and failure-tolerant. Simple greetings/form answers and clear
+numbers answering the displayed field use code directly; free-form guidance retains typed
+interpretation and refreshed catalogue checks.
 
-Only administrators mutate documents; active staff may view/search their own institution.
-Derive tenant scope from a hashed, expiring server-side session token in an HttpOnly,
-SameSite cookie. Require a custom mutation header and allowlisted browser origins.
-Limit sign-ins by account and connecting host; limit uploads/retries and searches per
-institution. Production rate limits require shared Redis and fail closed if unavailable.
-Extracted reference text and embeddings reside in the institution-scoped database;
-upload only approved institution material, never applicant personal documents here.
+## 7. Payments, discounts and review
 
-Record source title/URL or synthetic identifier, review date and provenance/license.
-Tenant-filter retrieval. Check relevance/sufficiency on an evaluation set; returning
-top-k chunks alone is not a confidence gate. Abstain when the answer is absent or weak.
-Retain internal source references for factual answers without appending them to
-student messages. Fees/course availability come from the
-structured catalog; document conflicts require staff clarification, not an invented value.
-Treat document content as untrusted data, never instructions. Test multilingual retrieval.
+Institutional fees come from stored course data in integer minor units. Unknown tuition
+or other charges remain unknown; documents do not override authoritative prices. Staff
+define discount type/value/validity/constraints. AI may suggest a configured code; code
+validates it and computes the fee. No invented discounts, negotiation or model-calculated amounts.
 
-## 5. Staff journey
+Link creation requires the applicable application/eligibility state and explicit fee
+confirmation. Persist invoice/provider IDs and replay guards. Failures must not announce
+success or create uncontrolled duplicates. Verify Razorpay signatures and match link,
+reference, currency and exact amount before settlement. Redirects/student assertions cannot
+mark paid; duplicates do not repeat state/receipts. Preserve uncertain provider outcomes.
 
-Manually provision institution staff for the first release. Provide email/password
-login using the standard library's scrypt password hashing, expiring server-validated sessions,
-logout, secure cookie/CSRF controls where applicable, and throttled failed logins.
-The authenticated session determines tenant and permissions; never trust a requested
-tenant ID alone. Keep demo access limited to synthetic data.
+Payment leads to review, not automatic admission. Authorised staff approve/waitlist/reject
+with reasons/audit and applicable capacity/state checks. Financial records and access
+decisions remain separate; refunds require institution/provider handling. Sandbox keys and
+live enablement are separate. Finish latest-flow test-card/webhook/handset acceptance before
+live operation. Sample reference applications retain markers and never allocate university seats.
 
-Required screens: login; lead list with course/status filters; lead detail with facts,
-eligibility evidence and ordered conversation; human-request queue and request detail.
-Show loading, empty, unauthorized and error states. Manual refresh or bounded polling
-is adequate; WebSockets and elaborate charts are later work. Use clear accessible
-layouts; no mandatory decorative theme is part of feature acceptance.
+## 8. Institution knowledge
 
-A human request must create a durable request with the student's context. Confirm only
-that the request was recorded; do not promise an unconfigured counselor response time.
-Staff can acknowledge/resolve it with an audit trail. A request suppresses automatic
-qualification progression; subsequent student messages remain visible and receive an
-honest acknowledgment. Staff can explicitly resume the automated journey. Staff-authored
-Telegram replies, live takeover and AI co-pilot suggestions are separate later features.
+Administrators upload approved digital PDF, DOCX and UTF-8 TXT/Markdown/CSV, individually or
+by nested folder. Preserve safe paths; reject unsupported/scanned inputs with actionable
+errors. OCR is excluded. Bound bytes/pages/archive expansion/text/time/process resources;
+[CONSTRAINTS.md](CONSTRAINTS.md) records defaults and authorities.
 
-## 6. Safety, privacy and reliability
+Encrypt originals, track recoverable queued/processing/ready/failed attempts and deduplicate
+bytes per tenant. Claim atomically, publish chunks together and prevent publication after
+deletion. Offline PDF layout/table parsing runs in a bounded child and serial queue,
+protecting interactive capacity. Do not promise perfect extraction of every document.
 
-- Code owns eligibility, catalog facts, prices and consequential state transitions.
-- All reply paths pass output checks before sending. Store validation outcome and final
-  content; do not treat an LLM classifier alone as a guarantee against fabricated facts.
-- Use parameterized tenant-scoped queries and test negative access across two tenants.
-- Minimize collected information. Encrypt sensitive name/contact/message/fact fields at
-  application level; audit authorized access and significant state/request changes.
-- Never log secrets, raw bot-token URLs, raw applicant content or credentials. Telemetry
-  records internal IDs, model role, timing, usage and sanitized error classifications.
-- Use bounded provider/network retries and deadlines. On outage, preserve state and give
-  a safe retry response; do not switch to an unconfigured AI provider.
-- Persist inbound processing and outbound send outcomes. Recover pending work. Telegram
-  send/network timeouts can make delivery uncertain; record that state and avoid blind
-  resend loops. Do not claim exactly-once external delivery.
-- Lock ownership and retry handling must not double-apply transitions. Acknowledge source
-  updates only after a durable intake record; retries can safely recover remaining work.
-- Remove public debug exposure before deployment. Separate health/liveness from readiness.
-- Event demos use synthetic data. Before a real applicant pilot, verify privacy access,
-  deletion/retention, backups, security and operating procedures; do not claim statutory
-  compliance from this specification or encryption utilities alone.
+Filter ready/approved tenant material by permitted shared/course scope before retrieval
+and OpenAI reranking. Staff may apply explicit course filters. Resolve follow-ups from
+bounded context, clarify ambiguity and translate non-ASCII queries without lowering the
+relevance floor or changing numeric meaning. Validate complete candidate-ID permutations;
+invalid ranking/outage retains safe baseline order.
 
-## 7. Verification and release acceptance
+Relevance alone is not support: Telegram factual answers need a validated exact quotation
+or abstention. Student messages omit source footers; encrypted evidence and staff search
+retain source IDs/path/passage. Fees/availability use structured records. Treat retrieved
+content as untrusted data, never instructions. See ADR-011 and the ingestion guide.
 
-Use pragmatic TDD for identity, rules, state, dedup, privacy and authorization. Automated
-tests use fake provider/Telegram calls. Relevant integration checks use real pgvector
-PostgreSQL and Redis, including migration up/down and recovery. Run the existing backend
-gate, plus frontend lint/type/build and applicable UI tests once the frontend exists.
-Live checks are separate, bounded and recorded with sanitized evidence and usage limits.
+## 9. Staff workspace
 
-- [x] A real Telegram user starts a private conversation and receives a reply.
-- [x] Course and batch callbacks persist the correct selection and reject forged/stale input in tests.
-- [x] Qualification handles missing facts, eligible/ineligible cases and corrections in database journey tests.
-- [x] Recent inbound/outbound context and encrypted facts persist independently of worker lifetime.
-- [x] Approved FAQs return exact source quotations and unsupported questions abstain in journey tests.
-- [x] Staff authenticate and inspect the same live persisted lead, evidence and conversation.
-- [x] Human requests and acknowledge/resolve/explicit-resume controls pass database journey tests.
-- [x] User-sent corrections, sourced/unsupported questions and `/human` replies are
-  confirmed sent; real staff browser actions persist acknowledgment, resolution with
-  pause retained and explicit resume, with audit records.
-- [x] Duplicate/concurrent processing and uncertain-send handling pass regression checks.
-- [x] Two-tenant negative tests prove isolation across retrieval, callback and staff endpoints.
-- [ ] Selected languages, provider refusal/outage handling and output checks are evaluated.
-- [ ] Setup, tests, demo limitations, final build evidence and event submission assets agree.
+Provision institutions/staff manually initially. Institution code/email/password creates
+expiring opaque server-side sessions with hashed tokens, HttpOnly/SameSite cookies,
+throttled sign-in and origin/mutation checks. Administrators manage staff/content/settings;
+agents act within permission. Self-registration, SSO and automated onboarding are future choices.
 
-The existing source audit is [CURRENT_STATE.md](docs/event/CURRENT_STATE.md). Historical
-default tests and Meta failures are not Telegram acceptance evidence. This document
-records the target. Checked items have command, database or live evidence in tasks/todo.md;
-synthetic acceptance and extended handset acceptance remain distinct.
+The workspace covers lead filters/search, conversation/evidence, applications/review,
+payment monitoring, staff requests/takeover, reviewed co-pilot, courses/intakes/rules/discounts,
+uploads/settings/accounts/privacy, analytics/exports, delivery budgets and integrations/
+notifications. Provide responsive accessible loading/empty/error/unauthorised states. Current
+visual choices are in [UI_THEME.md](docs/engineering/UI_THEME.md); older dark/glassmorphism
+mandates are superseded.
 
-## 8. Full roadmap and remaining decisions
+Requests persist context. Acknowledge/resolve do not resume automation; explicit confirmation
+does. Takeover suppresses direct AI sends; co-pilot suggestions require review/edit/send.
+Maintain continuity when control returns. Never invent staff acceptance/contact/response times.
+Routine uncertainty, unavailable facts and unsupported interests stay assistant-led;
+explicit human requests, safety and staff-only/critical actions can require intervention.
 
-Later phases retain forms/review, payments/discounts, direct staff messaging/co-pilot,
-follow-ups, catalog/batch/rule/document CRUD, business hours/settings, analytics/exports,
-integrations/notifications, deletion/retention and robust deployment/operations.
-The [archived prior specification](docs/planning/archive/2026-10-23-before-telegram-alignment/SPEC.md)
-preserves all prior details; the active roadmap classifies them without claiming delivery.
+## 10. Engagement, reporting and integrations
 
-Verified choices: OpenAI access/structured schemas, 1536-dimensional embeddings,
-bot provisioning, manual staff provisioning and server-side sessions. Remaining owner
-decisions include live operating budget, language reviewers, hosting and continuation cost.
-Event unknowns: portal details, existing-work permission, surprise requirement and any
-deadline updates. These are tracked tasks, not reasons to add unnecessary services.
+Follow-ups require explicit reminder consent and respect opt-out, office hours, delays/caps,
+current state and staff ownership. `/followups` manages preferences; `/stop` revokes them.
+Recheck at execution and recover safely. Original two-attempt/cold-lead ideas do not override
+configured policy. Do not invent urgency. Unsolicited first contact needs a separate channel/
+consent decision; the original outbound WhatsApp-template idea is not active Telegram capability.
 
+Analytics report recorded lifecycle/application/payment counts and drop-off indicators,
+not causal conversion gains. Tenant-scoped CSV/Excel exports retain formula-safety checks.
+Integration endpoints need admin authority, SSRF protections, authenticated/signed events,
+bounded retries and durable state. Notifications use authenticated tenant-scoped WebSocket
+delivery with refresh recovery, rather than unauthenticated broadcasts.
 
-## Adaptive course guidance (Task 61)
+## 11. Privacy, safety and production
 
-### Published programme references (Task 65 / ADR-016)
+Encrypt sensitive identifiers/messages/facts/forms and institution credentials. Audit access
+and significant changes without copying private content into logs. Support inquiry erasure
+and configurable conversation retention under documented institutional/financial/audit
+policy. Reset, erasure, retention and external-provider deletion are distinct operations.
 
-Publicly listed programmes support guidance without fabricated intake records.
-Mark them as references with official source URLs. Keep live eligibility, fees,
-capacity and application authorization unverified. Do not select an admissions
-intake, collect applications or create payments for references. The dashboard and
-fee replies show unknown fees as unverified. Existing configured admissions offerings
-retain their behavior. The JAIN Kochi snapshot and transactional local reset follow
-ADR-016; preserve access/bot configuration and prevent synthetic reseeding.
+Typed validation, tenant filters/constraints, scoped limits and input/retrieval/output checks
+reduce abuse, injection and unsupported claims. No classifier guarantees truth. Provider
+refusal/outage/invalid schemas preserve state and offer safe recovery. Operational telemetry
+excludes raw applicant content; optional vendors cannot bypass that boundary.
 
-### Supportive interaction (Task 63)
+AI-processing disclosure/controls, minors/guardian handling, retention and provider processing
+need explicit product/privacy decisions. Reminder consent does not establish all AI-processing
+permissions. Encryption and `store=False` alone do not establish compliance.
 
-Task 64 refinement: routine discovery, catalogue browsing, uncertainty and successful
-entry checks offer no staff-handoff shortcut. Generated guidance answer options must
-also omit staff-contact actions. Explicit student requests, safety concerns, failed
-entry-rule review and changes to submitted applications retain the relevant support
-path. Existing staff-owned conversations stay paused until explicitly resumed.
+Choose hosting/budget, secret storage, TLS/same-origin boundaries, protected data services,
+backups/restores, monitoring, incident ownership and rollback before real operation. Local
+container success is not deployment acceptance. No deployment without the owner's instruction.
+See [security and production](docs/engineering/security-and-production.md).
 
-When paid application fees exist but the institution has no Razorpay credentials,
-show the configured fee and honest online-payment unavailability. Offer no payment
-creation button or payable quote, clear an obsolete quote and create no invoice.
-Preserve existing receipts/invoices and zero-payable-amount handling. Razorpay test
-account setup, test-card validation and live enablement remain incomplete.
+## 12. Verification and release acceptance
 
-Use the primary-source techniques and limits in
-[the guidance research](docs/engineering/ADAPTIVE_GUIDANCE_RESEARCH.md) and ADR-015.
-CIP/CASVE provides flexible decision purposes; RIASEC informs tentative activity
-themes; OARS informs listening and summaries. These do not prescribe a mandatory
-question order or validate the assistant as a psychometric assessment.
+Test-first for identity/tenant authority, rules, corrections, state, replay, payments,
+privacy and guardrails. Default tests fake providers. Relevant integrations use disposable
+PostgreSQL/pgvector and Redis; frontend checks exercise user actions. Live provider/handset
+checks are bounded, separately authorised and record source/configuration, failures, usage
+and limits. Never transfer another implementation's test count, paid link or retrieval
+threshold as current proof.
 
-Learn consequential background, interests, goals and actual prerequisites adaptively.
-Do not treat short answers or lack of exposure as inability. Do not demand technical
-project proof. Offer contextual answer buttons when useful, uncertainty and free text;
-use text for precise academic facts. Only a verified tap becomes evidence, never an
-implicit course selection. Expire stale options across conversation/context resets.
-Prevent repetitive discovery and unanswered-prerequisite loops. Do not recommend a
-course on schooling alone or infer specific curriculum from a generic description.
-No extra provider request is needed to render controls or recover from a stalled turn.
-
-English is the active conversation language for this slice; onboarding does not require
-language selection. Guide applicants toward relevant institution courses by exploring
-explicit background, interests, experience, goals, values and practical constraints.
-Ask one useful contextual question at a time, adapt to known answers, accept corrections
-and skipped topics, and let a decided applicant proceed without a compulsory quiz.
-Text is the default for reflection; signed choices are useful for real course/batch
-selection and optional deeper exploration, rather than every answer.
-
-The student's provisional exploration stage and broad interest evidence are encrypted
-with conversation memory and may be reviewed by authorized staff. These are contextual
-notes, not an aptitude score, diagnosis, fixed personality type or admissions criterion.
-The optional deeper conversation uses original prompts; an official external interest
-inventory is offered only on request. No licensed test items/scoring are copied.
-
-Every institution recommendation uses a live tenant-owned active catalog entry with an
-open batch. Exclude courses with a failed known eligibility rule; unknown requirements
-remain explicitly unverified and ask only necessary questions. Code owns academic
-eligibility, fees, availability and actual selection. Interest notes never grant or deny
-admission. Recommendations explain student evidence, course evidence, uncertainty and
-a useful next step. Offer relevant less familiar catalog courses without overriding a
-student's clear preference or repeatedly upselling. When no suitable offering can be
-verified, say so and offer clearly labelled fields to research elsewhere. Never invent
-another institution's courses, accreditation, prerequisites, job outcomes or availability.
-
-Preserve FAQ grounding/abstention, consent, safety/human handoff, applications/payments,
-tenant boundaries and encrypted persistence. Guidance may pause/resume around FAQs or
-eligibility collection. Only explicit student choices change course/batch selection;
-submitted applications retain their existing change controls. Provider failures keep
-profile/selection safe and offer a retry or explicit catalog browse, not an invented fit.
-
-## Explicit local demo application mode
-
-ADR-017 permits separately configured test applications on public-reference courses. Demo
-fees are distinct from unverified university fees; no real batch, capacity or academic
-eligibility is fabricated. Confirmed course choice leads to a reviewable demo application,
-Razorpay test payment and staff review. Development-only institution/test-key guards and
-persistent demo markers prevent this exception from enabling real admissions or payments.
-
-The owner-selected sample fee is INR 3,000 (300,000 paise) per demo application,
-separate from unverified university fees. Confirmed course choice starts a draft;
-explicit review/submit and fee confirmation precede provider link creation.
-Only a verified captured test payment permits demo staff approval. The local
-scheduler may authenticate exact provider link/payment reads in place of public
-webhook ingress for demo invoices; real payments retain signed event confirmation.
+Acceptance includes the persisted student-to-staff journey; valid/invalid eligibility;
+grounded/unsupported answers; corrected/interrupted collection; explicit application/payment/
+review; consent/ownership controls; duplicate/uncertain delivery; tenant-negative checks;
+recovery and quality gates. Language fluency, student usefulness and institutional operating
+readiness need their own evaluations. Current results and next work live in STATUS/tasks.

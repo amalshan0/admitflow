@@ -80,7 +80,7 @@ if __name__ == "__main__":
         checks = asyncio.run(verify())
         report = {"scope": "synthetic live PDF/OpenAI; no Telegram sends", "checks": checks}
         print(json.dumps(report, indent=2))
-        Path("../docs/event/DOCUMENT_PIPELINE_RESULTS.json").write_text(
+        Path("../docs/verification/DOCUMENT_PIPELINE_RESULTS.json").write_text(
             json.dumps(report, indent=2) + "\n", encoding="utf-8"
         )
         if not all(checks.values()):

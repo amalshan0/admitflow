@@ -7,22 +7,9 @@ Agent-neutral. Applies to every change by anyone (human or AI agent).
 `main` is always releasable and is **protected**: no direct commits, ever. All work happens
 on short-lived branches that merge into `main` through a Pull Request.
 
-Branch names use a type prefix matching the change:
-
-```
-feat/whatsapp-webhook-dedup
-fix/payment-link-replay
-chore/bump-ruff
-docs/engineering-handbook
-```
-
-Start every branch from an up-to-date `main`:
-
-```bash
-git switch main
-git pull --ff-only
-git switch -c feat/<short-slug>
-```
+Use a descriptive `codex/` branch by default (for example
+`codex/product-context-consolidation`). Start from current `origin/main` after fetching;
+preserve unrelated edits and avoid checking out an old local branch as the base.
 
 Keep branches short-lived. Rebase on `main` if it moves under you (`git pull --rebase origin main`).
 
@@ -35,7 +22,7 @@ feat(webhook): verify Meta HMAC signature before enqueue
 fix(payments): clear pending order on webhook to stop replay
 test(guardrails): cover prompt-injection rejection cases
 chore(deps): pin httpx2 to 2.13.1
-docs(adr): record System-1 decision layer (ADR-008)
+docs(adr): record typed OpenAI decisions (ADR-008)
 ```
 
 Types: `feat`, `fix`, `refactor`, `test`, `docs`, `chore`, `perf`, `build`, `ci`.
@@ -53,12 +40,8 @@ trailers. Do not add `Co-Authored-By: Claude …`, `Co-Authored-By: <any model>`
 
 Why: the repo's contributor list and commit authorship must reflect the human owner only.
 
-Author identity is already set:
-
-```bash
-git config user.name "Amal Shan"
-git config user.email "amalshanc02@gmail.com"
-```
+Use the owner's existing configured identity. Check `git var GIT_AUTHOR_IDENT`
+before committing; do not replace their selected email as an incidental setup step.
 
 Author is keyed off the commit's author email — not who runs `git push` — so committing
 under this identity is what keeps the contributor list clean, regardless of who pushes.
@@ -89,18 +72,13 @@ Important / Suggestion with `file:line` refs. Merge only when:
 Use **squash-merge** so `main` stays linear and each merge is one revertible commit. Delete
 the branch after merge. Then tick the task in [../../tasks/todo.md](../../tasks/todo.md).
 
-## Who runs `push` and repo creation
+## Publication authority
 
-Pushing and creating the remote are the human owner's actions. An agent prepares branches,
-commits (under the identity above), and PR text, then hands the exact commands to the owner
-to run. First-time remote setup:
-
-```bash
-git remote add origin https://github.com/<owner>/admitflow.git
-git push -u origin main
-# thereafter, per feature branch:
-git push -u origin feat/<short-slug>
-```
+The owner explicitly authorised publishing this repository and the current consolidation.
+Within that scope, prepare the branch, commit, push and open a PR; inspect CI on the exact
+head and merge only with clean review and green required checks. No force-push to main,
+replacement of history, or production deployment is implied. For unrelated future work,
+follow the owner's current authorisation.
 
 ## What never gets committed
 

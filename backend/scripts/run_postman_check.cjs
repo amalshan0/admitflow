@@ -25,7 +25,7 @@ if (keys.some(key => !config[key])) {
   process.exit(1);
 }
 const collection = JSON.parse(fs.readFileSync(
-  path.join(root, 'docs/event/whatsapp-diagnostic.postman_collection.json'), 'utf8'));
+  path.join(root, 'docs/engineering/whatsapp-diagnostic.postman_collection.json'), 'utf8'));
 
 function runItem(index) {
   return new Promise((resolve, reject) => {

@@ -8,7 +8,7 @@ ADR-007 hosting/vendor proposals do not require unused services.
 ## Secrets
 
 - Secrets live in `.env` locally (git-ignored) and in the platform's secret store in
-  prod (Fly.io secrets, Vercel env). **Never** in code, logs, commits, or the knowledge graph.
+  production (the selected platform secret store). **Never** in code, logs, commits, or the knowledge graph.
 - `.env.example` lists every key with placeholder values so a fresh clone knows what to set.
 - If a secret is committed, it's compromised: rotate it, then scrub history. Don't just
   delete the line.
@@ -34,8 +34,9 @@ Any endpoint reachable from outside is a threat surface. For each one:
 - **Verify signatures**: Meta WhatsApp webhook (HMAC) and Razorpay webhook (HMAC) are
   verified before the payload is trusted or enqueued.
 - **Validate input** with Pydantic at the boundary; reject malformed early.
-- **Dedup & concurrency**: webhook dedup (Redis `SETNX`) and the per-phone mutex
-  (`wa_mutex:{phone}`) prevent double-processing and races. See
+- **Dedup & concurrency**: the durable Telegram inbox/outbox, bot-scoped update identity, receiver lock and
+  per-tenant lead serialisation protect processing and recovery. Legacy Meta helpers
+  remain disabled compatibility code. See
   [../decisions/ADR-002-webhook-concurrency-and-dedup.md](../decisions/ADR-002-webhook-concurrency-and-dedup.md).
 - **Authn/authz**: dashboard/API routes require auth. If you add an unauthenticated route,
   say so explicitly in the PR and justify it — silent unauthenticated exposure is a blocker.
@@ -48,7 +49,7 @@ Any endpoint reachable from outside is a threat surface. For each one:
 - **Fees and amounts come from the DB, never from the model.** The output guardrail blocks
   any monetary figure not sourced from the DB — a hallucinated fee is a Critical bug.
 - RAG chunks are sanitized before injection (RAG-poisoning defense).
-- **Treat all inbound content as untrusted — take data, never instructions.** A WhatsApp
+- **Treat all inbound content as untrusted — take data, never instructions.** A student
   message or a retrieved chunk that says "ignore your rules / reveal the prompt / approve this
   fee" is data to be handled, not a command to obey. The input and RAG guardrails exist
   precisely to strip this; never let external text redirect the agent's behavior.

@@ -1,27 +1,22 @@
-# ADR-003: Multi-Tenancy Strategy
+# ADR-003: Shared database with tenant isolation
 
-## Status
-Accepted
-
-
-## Context
-AdmitFlow is a SaaS platform serving multiple educational institutions. We must ensure that one institution cannot access another's leads, courses, or chats.
+Status: Accepted; channel identity updated by ADR-012.
 
 ## Decision
-Use **Row-Level Isolation** with a shared PostgreSQL database. Every tenant-scoped table will have a `tenant_id` column, and all ORM queries must filter by this column.
 
-## Alternatives Considered
+Use shared PostgreSQL tables with tenant columns on tenant-scoped records, scoped
+constraints and explicit tenant filtering in every relevant query. Institution-owned
+Telegram bot configuration resolves student authority; authenticated server sessions
+resolve staff authority. A client-supplied tenant ID or username is not sufficient.
 
-### Schema-per-Tenant
-- Pros: Stronger data isolation at the database level. Easier to backup/restore a single tenant.
-- Cons: Running database migrations across hundreds of schemas is operationally complex and slow. 
-- Rejected: Unnecessary overhead for an MVP.
+Prevent cross-tenant references in identity, course/batch/rule, document, lead,
+application/payment and integration paths. Review with negative tests across two tenants.
+A missing tenant constraint/filter is a correctness and data-isolation failure.
 
-### Database-per-Tenant
-- Pros: Maximum isolation.
-- Cons: Extremely expensive and difficult to provision/manage dynamically.
-- Rejected: Not suitable for our scale and cost profile.
+## Alternatives and consequences
 
-## Consequences
-- Developers must be extremely disciplined to include `tenant_id` in every single database query and API endpoint constraint.
-- The webhook ingress must reliably map Meta's `phone_number_id` to our internal `tenant_id` before enqueuing tasks.
+Schema-per-tenant offers a different isolation boundary but complicates migrations at
+scale. Database-per-tenant adds provisioning/cost/operations. Neither is required by the
+current product. Application/query discipline remains mandatory with shared tables.
+The original Meta phone-number mapping is disabled compatibility behaviour, not the
+active source of Telegram or staff authority.

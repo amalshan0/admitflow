@@ -1,29 +1,24 @@
-# ADR-004: Dual Memory Architecture
+# ADR-004: Durable conversations and explicit facts
 
-## Status
-Accepted — with one later revision: episodic memory is stored in our own `messages` table, not LangGraph's `AsyncPostgresSaver` (the engine is now hand-rolled — SPEC §17.1 / ADR-007). The dual-memory principle below is unchanged.
-
-
-## Context
-The AI must remember the full context of a conversation so parents don't have to repeat themselves. However, passing the entire uncompressed chat history of a 3-month lead into every LLM prompt will hit token limits and become prohibitively expensive.
+Status: Accepted persistence principle; current behaviour is specified in SPEC sections
+4 and 6 and ADR-013–015.
 
 ## Decision
-Implement a **Dual Memory Architecture**:
-1. **Episodic Memory**: Persist every turn as rows in a queryable `messages` table (PostgreSQL). Each `handle_turn()` reloads the recent N turns (or a rolling summary once the thread grows) to maintain conversational continuity. This is the single source of truth — also read by the dashboard and used for persistent conversational context. *(Originally specified as LangGraph `AsyncPostgresSaver`; revised when the engine went hand-rolled — SPEC §17.1. A checkpointer would have duplicated this state in an opaque blob.)*
-2. **Semantic Memory**: Create a custom `lead_facts` table in PostgreSQL. After each turn, extract key facts (name, age, course interest, timeline, budget) and save them to this table. Inject these facts into the system prompt as a `{memory_block}`.
 
-## Alternatives Considered
+Persist conversation turns and outcomes in queryable institution-scoped records; store
+validated facts and literal exploratory evidence separately. Reload bounded recent
+chronological context and relevant facts per turn so a restart does not lose progress.
+Staff inspect the same saved evidence. Encrypt sensitive content and keep corrections
+explicit; updating age must not erase an unrelated education or interest statement.
 
-### External Memory Providers (e.g., mem0, Zep)
-- Pros: Off-the-shelf solution for semantic extraction and search.
-- Cons: Adds an external network dependency, latency, potential point of failure, and complicates data privacy (DPDPA compliance) by sending PII to a third party.
-- Rejected: We already have PostgreSQL; keeping semantic facts in our own DB ensures data locality and security.
+Institution knowledge is a third layer: scoped reference passages/embeddings, separate
+from applicant facts. Long-term storage does not mean sending the full transcript to a
+model. Reset, retention and erasure have different scopes.
 
-### Summarization Window
-- Pros: Cheap on tokens.
-- Cons: Loses exact phrasing and granular context over time.
-- Rejected: Harms the premium UX required for admissions counseling.
+## Alternatives and open work
 
-## Consequences
-- Requires a dedicated LLM extraction step after the main conversation turn to update `lead_facts`.
-- DPDPA compliance ("Delete My Data") is straightforward because both episodic and semantic memory live in our controlled database.
+A graph checkpointer would duplicate the state needed by the workspace. External memory
+providers would add an extra dependency/data transfer; none is selected. Rolling summaries
+may be useful later but their threshold and correction-preservation acceptance are unset.
+They are not a delivered substitute for literal evidence. Storage under our control does
+not by itself establish complete privacy compliance or provider-side deletion.

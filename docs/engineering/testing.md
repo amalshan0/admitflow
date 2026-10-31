@@ -7,7 +7,7 @@ Agent-neutral. The goal is confidence per unit of effort — not coverage theate
 We are **test-first where it counts, test-after where it doesn't, and never untested.**
 
 - **Test-first (RED → GREEN → REFACTOR)** for logic-heavy or risky code:
-  - the `decide()` / System-1 decision layer (routing, readiness, escalation, guardrail triage)
+  - the typed OpenAI `decide()` boundary (routing, readiness, escalation, guardrail triage)
   - the three-layer guardrails (input sanitize, RAG sanitize, output validate)
   - qualification-rule evaluation and discount-code verification
   - payments (Razorpay link creation, HMAC webhook, replay protection)
@@ -35,7 +35,7 @@ backend/
   src/…
   tests/
     test_*.py           # unit + fast integration (default)
-    integration/        # tests that need real Postgres/Redis (added when Task 2+ lands)
+    integration/        # opt-in real Postgres/Redis checks
 ```
 
 Tests import from `src` (pytest is configured with `pythonpath = ["."]`). Name tests for the
@@ -44,12 +44,12 @@ behavior they assert (`test_output_guardrail_blocks_unlisted_fee`), not the func
 ## Unit vs integration
 
 - **Unit** (the majority): pure logic, fast, no network or DB. Mock the boundaries — the
-  `decide()` backend (Gemini), WhatsApp send, Razorpay, external HTTP. Assert on decisions
+  `decide()` backend (OpenAI), Telegram send, Razorpay, external HTTP. Assert on decisions
   and outputs, not on prompt strings.
 - **Integration**: exercise real Postgres (with pgvector) and Redis, because SQL, migrations,
   vector search, the mutex, and dedup can't be trusted against mocks. Bring them up with
   docker-compose (see [security-and-production.md](security-and-production.md) /
-  `docker-compose.yml` when it lands) or testcontainers. Integration tests gate any change
+  the existing `docker-compose.yml`) or testcontainers. Integration tests gate any change
   that touches the schema, the engine dispatcher, RAG retrieval, or payments — see the tier
   table in [quality-gates.md](quality-gates.md).
 
@@ -80,9 +80,7 @@ The full gate (lint + format + types + tests) is `bash scripts/verify.sh`.
 ## Coverage
 
 We don't chase a single global number. The bar is: **every branch in the risk-heavy modules
-above is exercised**, and every bug fix leaves behind a regression test. When integration
-infra lands, add a coverage floor for `src/` in CI and raise it deliberately, never by
-loosening tests.
+above is exercised**, and every bug fix leaves behind a regression test. A numeric coverage floor is not configured; record any adopted threshold in CONSTRAINTS.md.
 
 ### Browser announcement regions
 

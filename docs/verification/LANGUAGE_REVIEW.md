@@ -51,7 +51,7 @@ Malayalam unit cases; no emergency-service or native-speaker certification is cl
 
 In the synthetic bot: choose the language; select course/batch; provide age 20 and marks 70; correct age to 17 and then 21; decline an answer; ask about campus/library/hostel and an unsupported topic; request /human. Check clarity of buttons and recovery messages. Staff must acknowledge, resolve, then explicitly resume. Confirm the next student message continues normally.
 
-The expanded synthetic FAQ prompts are maintained in backend/src/scripts/evaluate_faq.py. Its report is docs/event/EVALUATION_RESULTS.json. It checks expected quotations/abstention, not translation style or spoken-language quality.
+The expanded synthetic FAQ prompts are maintained in backend/src/scripts/evaluate_faq.py. Its report is docs/verification/EVALUATION_RESULTS.json. It checks expected quotations/abstention, not translation style or spoken-language quality.
 
 ## Reminder consent and outreach copy
 

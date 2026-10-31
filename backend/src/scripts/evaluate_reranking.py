@@ -52,7 +52,7 @@ async def evaluate() -> dict[str, object]:
 
 def main() -> None:
     report = asyncio.run(evaluate())
-    target = Path(__file__).resolve().parents[3] / "docs/event/RERANKING_RESULTS.json"
+    target = Path(__file__).resolve().parents[3] / "docs/verification/RERANKING_RESULTS.json"
     target.write_bytes((json.dumps(report, indent=2) + "\n").encode())
     print(json.dumps(report, indent=2))
     if report["passed"] != report["total"]:

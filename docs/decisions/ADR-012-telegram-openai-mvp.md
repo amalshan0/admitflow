@@ -5,17 +5,17 @@ Status: Accepted; core implementation and local/live checks complete. Release an
 ## Context
 
 The user selected Telegram instead of WhatsApp and OpenAI as the AI provider, with
-only necessary services. The existing backend has reusable data/queue/engine modules,
-but no verified complete admissions journey or staff dashboard. Meta delivery remains
-historically blocked. The user approved a first release covering a Telegram inquiry
-and a minimal staff workflow while retaining the full institutional roadmap.
+only necessary services. At the original decision point the backend had reusable data/queue/engine modules,
+but no verified complete journey or staff workspace. Meta delivery was blocked.
+The Telegram inquiry/staff milestone was implemented and subsequently extended;
+current scope and acceptance are recorded in STATUS.md.
 
 ## Decision
 
 1. Use Telegram private chats, manually provisioned one bot per institution. Add
    explicit channel identities and trusted bot-to-tenant mapping; phone contact is
    optional. Preserve existing WhatsApp rows/code/evidence without claiming migration.
-2. Use long polling for the initial local/event receiver. Durable intake and startup
+2. Use long polling for the single active receiver. Durable intake and startup
    recovery protect accepted work before advancing offsets. A hosted webhook is an
    alternative requiring authenticated HTTPS and the same durable acceptance contract.
 3. Normalize inbound events and route all replies through a validation/persistence/
@@ -27,9 +27,10 @@ and a minimal staff workflow while retaining the full institutional roadmap.
    embeddings. Keep configured model IDs and bounded timeouts/retries. Explicit code
    owns prices, eligibility, authorization and consequential changes. Preserve state
    and give safe failure behavior when OpenAI is unavailable.
-6. Build a minimal Next.js/TypeScript/Tailwind staff surface over authenticated Python
+6. Build a Next.js/TypeScript/plain-CSS staff surface over authenticated Python
    APIs. Login, leads, conversation/eligibility detail and human-request controls are
-   in scope; broad CRUD, analytics, applications/payments and co-pilot are later work.
+   the initial scope. Broad CRUD, analytics, applications/payments and co-pilot were
+   implemented subsequently; current evidence and remaining limits are in STATUS.md.
 7. Use correlated redacted telemetry for model role, usage, latency and errors from
    the start. Langfuse and Sentry are optional implementations; no external telemetry
    vendor or raw-prompt logging is required for this MVP. Keep security/audit controls.
@@ -68,7 +69,7 @@ quality claims remain subject to evaluation and fluent-speaker review.
 ## References and verification
 
 - [Active specification](../../SPEC.md), [plan](../../tasks/plan.md), [tasks](../../tasks/todo.md).
-- [Current source audit](../event/CURRENT_STATE.md) and [historical baseline](../planning/archive/2026-10-23-before-telegram-alignment/README.md).
+- [Current product status](../../STATUS.md), [technical history](../verification/IMPLEMENTATION_HISTORY.md) and [context reconciliation](../planning/CONTEXT_RECONCILIATION.md).
 - [Telegram Bot API](https://core.telegram.org/bots/api): receiving modes, identifiers and callbacks.
 - [OpenAI structured outputs](https://developers.openai.com/api/docs/guides/structured-outputs): structured output is not factual validation.
 

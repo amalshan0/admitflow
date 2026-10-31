@@ -150,7 +150,7 @@ def main() -> None:
     except Exception as error:
         print(json.dumps({"status": "failed", "error_type": type(error).__name__}))
         raise SystemExit(1) from None
-    target = Path(__file__).resolve().parents[3] / "docs/event/EVALUATION_RESULTS.json"
+    target = Path(__file__).resolve().parents[3] / "docs/verification/EVALUATION_RESULTS.json"
     target.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({"passed": report["passed"], "total": report["total"]}))
     if not report["all_passed"]:

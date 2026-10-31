@@ -1,28 +1,28 @@
 # ADR-009: Application-Layer PII Encryption and Audit Logging
 
 ## Status
-Accepted
+Accepted; current identifiers/authority are clarified by ADR-012 and SPEC section 11.
 
 
 ## Context
-AdmitFlow stores applicant personal data — WhatsApp phone numbers, names, and
-later emails — for institutions in India, so it must satisfy the DPDPA (India's
-data-protection law). Two obligations drive this decision:
+AdmitFlow stores sensitive applicant identifiers, conversation content and application
+details for institutions. Privacy/age/retention/provider policy needs production review;
+encryption alone is not a compliance assurance. Two engineering requirements drive this decision:
 
 1. **Confidentiality at rest.** If the database (or a backup/dump) is ever
    exposed, raw applicant PII must not be readable.
 2. **Accountability.** Significant actions on that data (status changes,
    payments, deletions, human takeover) must be attributable — who did what,
-   when — per SPEC §12 and §14.
+   when — see SPEC sections 9 and 11.
 
-The managed Postgres provider (Neon, ADR-007) already encrypts data on disk,
+Managed PostgreSQL providers commonly provide disk encryption,
 but that only protects against someone stealing the physical disk. It does
 **not** protect against a leaked connection string, a compromised query path, or
 an accidental data export — in all of those the provider hands back plaintext.
 We needed protection that travels with the data itself.
 
-Lead rows also need to be found by phone number (dedup on inbound WhatsApp
-messages, "Delete My Data" lookups). If the phone number is encrypted
+Legacy lead rows also need lookup by phone; active Telegram identities use bot-scoped
+keyed lookups. If the phone number is encrypted
 non-deterministically, we cannot search for it directly, because the same number
 encrypts to different ciphertext every time.
 

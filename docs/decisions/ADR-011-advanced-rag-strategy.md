@@ -24,8 +24,8 @@ FAQ answers still require an exact quotation from a supplied source or abstain.
 
 ## Separate retrieval work
 
-Digital PDF, DOCX and text ingestion remains supported. Complex table/layout parsing
-and semantic chunking remain Task 42.1. Task 42.2 now resolves follow-ups through typed
+Digital PDF, DOCX and text ingestion remains supported. Offline table/layout parsing and
+section-aware chunking are implemented under Task 42.1. Task 42.2 now resolves follow-ups through typed
 OpenAI decisions over six bounded recent completed/sent turns. Uncertain references
 ask for clarification. Standalone questions retain bounded non-ASCII translation and
 the ASCII fast path. Numeric rewrites are compared by normalized decimal value.
@@ -45,6 +45,6 @@ helper is not this runtime path.
 
 Unit checks cover ranking order, original-source preservation, tenant/injection
 filtering and invalid/outage fallback. PostgreSQL document and journey checks verify
-integration. Synthetic live multilingual ranking/FAQ reports are kept in docs/event.
+integration. Synthetic live multilingual ranking/FAQ reports are kept in docs/verification.
 This adds model-call cost and latency. No fixed latency or broad accuracy claim is
 made; baseline fallback protects availability, not equivalent ranking quality.
